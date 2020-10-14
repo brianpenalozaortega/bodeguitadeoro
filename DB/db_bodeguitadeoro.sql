@@ -141,3 +141,18 @@ COMMENT = '					';
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
+
+
+
+
+
+
+
+
+
+INSERT INTO `db_bodeguitadeoro`.`tb_tipo_persona` (`nombre`) VALUES ('cliente');
+INSERT INTO `db_bodeguitadeoro`.`tb_tipo_persona` (`nombre`) VALUES ('administrador');
+
+
+
+INSERT INTO `db_bodeguitadeoro`.`tb_persona` (`nombre`, `apellido`, `correo`, `clave`, `idtb_tipo_persona`) VALUES ('Brian', 'Peñaloza Ortega', '2013016328@unfv.edu.pe', '40bd001563085fc35165329ea1ff5c5ecbdbbeef', '1');
