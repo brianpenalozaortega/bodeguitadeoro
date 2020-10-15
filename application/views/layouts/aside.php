@@ -8,7 +8,7 @@
                 <ul class="sidebar-menu" data-widget="tree">
                     <li class="header">MAIN NAVIGATION</li>
                     <li>
-                        <a href="<?php echo base_url() ?>AdminDashboard">
+                        <a href="<?php echo base_url() ?>index.php/Dashboard">
                             <i class="fa fa-home"></i> <span>Inicio</span>
                         </a>
                     </li>
@@ -44,9 +44,9 @@
                             </span>
                         </a>
                         <ul class="treeview-menu">
-                            <li><a href="../../index.html"><i class="fa fa-circle-o"></i> Categorias</a></li>
-                            <li><a href="../../index.html"><i class="fa fa-circle-o"></i> Clientes</a></li>
-                            <li><a href="../../index.html"><i class="fa fa-circle-o"></i> Productos</a></li>
+                            <li><a href="#"><i class="fa fa-circle-o"></i> Categorias</a></li>
+                            <li><a href="#"><i class="fa fa-circle-o"></i> Clientes</a></li>
+                            <li><a href="#"><i class="fa fa-circle-o"></i> Productos</a></li>
                             <li><a href="<?php echo base_url() ?>index.php/Reporte/Venta"><i class="fa fa-circle-o"></i> Ventas</a></li>
                         </ul>
                     </li>
@@ -58,7 +58,7 @@
                             </span>
                         </a>
                         <ul class="treeview-menu">
-                            <li><a href="../../index.html"><i class="fa fa-circle-o"></i> Tipo Documentos</a></li>
+                            <li><a href="#"><i class="fa fa-circle-o"></i> Tipo Documentos</a></li>
                             <li><a href="<?php echo base_url() ?>index.php/Usuario"><i class="fa fa-circle-o"></i> Usuarios</a></li>
                             <li><a href="<?php echo base_url() ?>index.php/Permiso"><i class="fa fa-circle-o"></i> Permisos</a></li>
                         </ul>

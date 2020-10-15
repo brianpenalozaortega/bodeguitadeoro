@@ -39,7 +39,7 @@ class Producto extends CI_Controller {
         $nombre = $this->input->post("nombre");
         $precio = $this->input->post("precio");
         $stock = $this->input->post("stock");
-        $imagen = $this->input->post("imagen");
+        //$imagen = $this->input->post("imagen");
         $categoria = $this->input->post("categoria");
 
         // Para establecer una regla de validacion se tiene que ejecutar el metodo set_rules
@@ -54,21 +54,38 @@ class Producto extends CI_Controller {
         // Para ejecutar esta regla de validacion se debe llamar al metodo "RUN" de la libreria "form_validation"
         // Devuelve valor booleano
         if($this->form_validation->run()){
-            $data = array(
-                'nombre' => $nombre,
-                'precio' => $precio,
-                'stock' => $stock,
-                'imagen' => $imagen,
-                'idtb_categoria' => $categoria
-            );
-    
-            if($this->Producto_model->saveProducto($data)){
-                redirect(base_url()."Producto");
+
+            $config = [
+                "upload_path" => "./assets/template/imagenes",
+                'allowed_types' => "png|jpg|gif|jpeg"
+            ];
+            $this->load->library("upload", $config);
+
+            if($this->upload->do_upload('imagen')){
+                $dataimagen = array(
+                    "upload_data" => $this->upload->data()
+                );
+
+                $data = array(
+                    'nombre' => $nombre,
+                    'precio' => $precio,
+                    'stock' => $stock,
+                    // Nombre de la imagen con extension
+                    'imagen' => $dataimagen['upload_data']['file_name'],
+                    'idtb_categoria' => $categoria
+                );
+        
+                if($this->Producto_model->saveProducto($data)){
+                    redirect(base_url()."index.php/Producto");
+                }
+                else{
+                    $this->session->set_flashdata("error", "No se pudo guardar el nuevo producto");
+                    redirect(base_url()."index.php/Producto/add");
+                }
             }
             else{
-                $this->session->set_flashdata("error", "No se pudo guardar el nuevo producto");
-                redirect(base_url()."Producto/add");
-            }            
+                echo $this->upload->display_errors();
+            }
         }
         else{
             // Se va a mostrar el formulario de Agregar nuevamente
