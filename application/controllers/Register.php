@@ -7,6 +7,7 @@ class Register extends CI_Controller {
     public function __construct(){
         #Voy a heredar lo que contenga la clase CI_Controller
         parent::__construct();
+        
         #Llamar al model Cliente
         $this->load->model("Cliente_model");
     }
@@ -21,24 +22,61 @@ class Register extends CI_Controller {
     }
     
     public function savecliente(){
+        $nombre = $this->input->post("nombre");
+        $apellido = $this->input->post("apellido");
         $correo = $this->input->post("correo");
+        $celular = $this->input->post("celular");
+        $direccion = $this->input->post("direccion");
+        $referencia = $this->input->post("referencia");
         $clave = $this->input->post("clave");
+        $repetirclave = $this->input->post("repetirclave");
 
-        $res = $this->Cliente_model->login($correo, sha1($clave));
-
-        if(!$res){
-            $this->session->set_flashdata("error", "El correo y/o la clave son incorrectos");
-            redirect(base_url().'index.php/Login');
+        if($clave != $repetirclave){
+            $this->session->set_flashdata("error", "Las claves no coinciden");
+            redirect(base_url().'index.php/Register');
         }
         else{
             $data = array(
-                'id' => $res->idtb_persona,
-                'nombre' => $res->nombre,
-                'rol' => $res->idtb_tipo_persona,
-                'login' => TRUE
+                'nombre' => $nombre,
+                'apellido' => $apellido,
+                'correo' => $correo,
+                'clave' => sha1($clave),
+                'idtb_tipo_persona' => 1
             );
-            $this->session->set_userdata($data);
-            redirect(base_url()."index.php/Marketplace");
+
+            $res = $this->Cliente_model->savepersona($data);
+
+            if(!$res){
+                $this->session->set_flashdata("error", "No se pudo registrar correctamnte. Por favor intentar nuevamente.");
+                redirect(base_url().'index.php/Register');
+            }
+            else{
+                $id = $this->Cliente_model->getLastID();
+
+                $datacliente = array(
+                    'celular' => $celular,
+                    'direccion' => $direccion,
+                    'referencia' => $referencia,
+                    'idtb_persona' => $id
+                );
+
+                $rescliente = $this->Cliente_model->savecliente($datacliente);
+
+                if(!$rescliente){
+                    $this->session->set_flashdata("error", "No se pudo registrar correctamnte. Por favor intentar nuevamente.");
+                    redirect(base_url().'index.php/Register');
+                }
+                else{
+                    $datasession = array(
+                        'id' => $id,
+                        'nombre' => $nombre,
+                        'rol' => "cliente",
+                        'login' => TRUE
+                    );
+                    $this->session->set_userdata($datasession);
+                    redirect(base_url()."index.php/Marketplace");
+                }
+            }
         }
     }
 

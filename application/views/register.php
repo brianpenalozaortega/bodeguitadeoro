@@ -29,13 +29,17 @@
 </head>
 <body class="hold-transition register-page">
 <div class="register-box">
-  <!-- <div class="register-logo">
-    <a href="../../index2.html"><b>Admin</b>LTE</a>
-  </div> -->
+  <div class="register-logo">
+    <a href="#"><b>Bodeguita de Oro</b</a>
+  </div>
 
   <div class="register-box-body">
     <p class="login-box-msg">Registrarse en el sistema</p>
-
+    <?php if($this->session->flashdata("error")): ?>
+      <div class="alert alert-danger">
+        <p><?php echo $this->session->flashdata("error") ?></p>
+      </div>
+    <?php endif; ?>
     <form action="<?php echo base_url();?>index.php/Register/savecliente" method="post">
       <div class="form-group has-feedback">
         <input type="text" class="form-control" placeholder="Nombres" name="nombre">
@@ -51,15 +55,15 @@
       </div>
       <div class="form-group has-feedback">
         <input type="text" class="form-control" placeholder="Celular" name="celular">
-        <span class="glyphicon glyphicon-user form-control-feedback"></span>
+        <span class="glyphicon glyphicon-phone form-control-feedback"></span>
       </div>
       <div class="form-group has-feedback">
         <input type="text" class="form-control" placeholder="Direccion" name="direccion">
-        <span class="glyphicon glyphicon-user form-control-feedback"></span>
+        <span class="glyphicon glyphicon-map-marker form-control-feedback"></span>
       </div>
       <div class="form-group has-feedback">
         <input type="text" class="form-control" placeholder="Referencia" name="referencia">
-        <span class="glyphicon glyphicon-user form-control-feedback"></span>
+        <span class="glyphicon glyphicon-map-marker form-control-feedback"></span>
       </div>
       <div class="form-group has-feedback">
         <input type="password" class="form-control" placeholder="Clave" name="clave">
@@ -73,7 +77,7 @@
         <div class="col-xs-12">
           <div class="checkbox icheck">
             <label>
-              <input type="checkbox"> Estoy de acuerdo con los <a href="#">terminos y condiciones</a>
+              <input type="checkbox"> Estoy de acuerdo con los <a href="#"> terminos y condiciones</a>
             </label>
           </div>
         </div>
@@ -86,9 +90,9 @@
     </form>
 
     <div class="social-auth-links text-center">
+      <a href="<?php echo base_url();?>index.php/Login" class="text-center">Ya estoy registrado</a>
     </div>
-
-    <a href="login.html" class="text-center">I already have a membership</a>
+    
   </div>
   <!-- /.form-box -->
 </div>

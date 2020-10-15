@@ -1,63 +1,74 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Marketplace extends CI_Controller {
+class Producto extends CI_Controller {
 
     #Constructor
     public function __construct(){
         #Voy a heredar lo que contenga la clase CI_Controller
         parent::__construct();
 
-        if(!$this->session->userdata("login")){
-            redirect(base_url()."index.php/Login");
+        if(!$this->session->userdata("auth")){
+            redirect(base_url()."index.php/Auth");
         }
 
-        #Llamar al model Producto
         $this->load->model("Producto_model");
+        $this->load->model("Categoria_model");
     }
 
 	public function index(){
         $data = array(
-            'Productos' => $this->Producto_model->getProductos()
+            'productos' => $this->Producto_model->getProductos()
         );
-		$this->load->view('clientelayouts/clienteheader');
-		$this->load->view('marketplace/list', $data);
-		$this->load->view('clientelayouts/clientefooter');
+		$this->load->view('layouts/header');
+		$this->load->view('layouts/aside');
+		$this->load->view('producto/list', $data);
+		$this->load->view('layouts/footer');
     }
     
 	public function add(){
+        $data = array(
+            'categorias' => $this->Categoria_model->getCategorias()
+        );
 		$this->load->view('layouts/header');
 		$this->load->view('layouts/aside');
-		$this->load->view('categoria/add');
+		$this->load->view('producto/add', $data);
 		$this->load->view('layouts/footer');
     }
 	public function store(){
         $nombre = $this->input->post("nombre");
-        $descripcion = $this->input->post("descripcion");
+        $precio = $this->input->post("precio");
+        $stock = $this->input->post("stock");
+        $imagen = $this->input->post("imagen");
+        $categoria = $this->input->post("categoria");
 
         // Para establecer una regla de validacion se tiene que ejecutar el metodo set_rules
         // Este metodo recibe 3 parametros
         // 1) Nombre del campo => NOMBRE DE LA VARIABLE
         // 2) Alias del campo => NOMBRE DE LO QUE SE VA A MOSTRAR QUE ESTA MAL
         // 3) Regla de validacion "requerido|unico[NombreDeLaTabla.Atributo]"
-        $this->form_validation->set_rules("nombre", "Nombre", "required|is_unique[tb_categoria.nombre]");
+        $this->form_validation->set_rules("nombre", "Nombre", "required|is_unique[tb_producto.nombre]");
+        $this->form_validation->set_rules("precio", "Precio", "required");
+        $this->form_validation->set_rules("stock", "Stock", "required");
 
         // Para ejecutar esta regla de validacion se debe llamar al metodo "RUN" de la libreria "form_validation"
         // Devuelve valor booleano
         if($this->form_validation->run()){
             $data = array(
                 'nombre' => $nombre,
-                'descripcion' => $descripcion,
-                'estado' => "1"
+                'precio' => $precio,
+                'stock' => $stock,
+                'imagen' => $imagen,
+                'idtb_categoria' => $categoria
             );
     
-            if($this->Categoria_model->saveCategoria($data)){
-                redirect(base_url()."index.php/Categoria");
+            if($this->Producto_model->saveProducto($data)){
+                redirect(base_url()."Producto");
             }
             else{
-                $this->session->set_flashdata("error", "No se pudo guardar la nueva categoria");
-                redirect(base_url()."index.php/Categoria/add");
-            }
+                $this->session->set_flashdata("error", "No se pudo guardar el nuevo producto");
+                redirect(base_url()."Producto/add");
+            }            
         }
         else{
             // Se va a mostrar el formulario de Agregar nuevamente
@@ -67,25 +78,30 @@ class Marketplace extends CI_Controller {
 
 	public function edit($id){
         $data = array(
-            'categoria' => $this->Categoria_model->getCategoria($id)
+            'categorias' => $this->Categoria_model->getCategorias(),
+            'producto' => $this->Producto_model->getProducto($id)
         );
 		$this->load->view('layouts/header');
 		$this->load->view('layouts/aside');
-		$this->load->view('categoria/edit', $data);
+		$this->load->view('producto/edit', $data);
 		$this->load->view('layouts/footer');
     }
 	public function update(){
         $id = $this->input->post("id");
+        $codigo = $this->input->post("codigo");
         $nombre = $this->input->post("nombre");
         $descripcion = $this->input->post("descripcion");
+        $precio = $this->input->post("precio");
+        $stock = $this->input->post("stock");
+        $categoria = $this->input->post("categoria");
 
         // Al modificar, se puede editar otro valor que no sea el que tenga con la restriccion de unico
-        $categoriaActual = $this->Categoria_model->getCategoria($id);
-        if($nombre == $categoriaActual->nombre){
+        $productoActual = $this->Producto_model->getProducto($id);
+        if($codigo == $productoActual->codigo){
             $unique =  '';
         }
         else{
-            $unique =  '|is_unique[tb_categoria.nombre]';
+            $unique =  '|is_unique[tb_producto.codigo]';
         }
 
         // Para establecer una regla de validacion se tiene que ejecutar el metodo set_rules
@@ -93,22 +109,29 @@ class Marketplace extends CI_Controller {
         // 1) Nombre del campo => NOMBRE DE LA VARIABLE
         // 2) Alias del campo => NOMBRE DE LO QUE SE VA A MOSTRAR QUE ESTA MAL
         // 3) Regla de validacion "requerido|unico[NombreDeLaTabla.Atributo]"
-        $this->form_validation->set_rules("nombre", "Nombre", "required".$unique);
+        $this->form_validation->set_rules("codigo", "Codigo", "required".$unique);
+        $this->form_validation->set_rules("nombre", "Nombre", "required");
+        $this->form_validation->set_rules("precio", "Precio", "required");
+        $this->form_validation->set_rules("stock", "Stock", "required");
 
         // Para ejecutar esta regla de validacion se debe llamar al metodo "RUN" de la libreria "form_validation"
         // Devuelve valor booleano
         if($this->form_validation->run()){
             $data = array(
+                'codigo' => $codigo,
                 'nombre' => $nombre,
-                'descripcion' => $descripcion
+                'descripcion' => $descripcion,
+                'precio' => $precio,
+                'stock' => $stock,
+                'idtb_categoria' => $categoria
             );
     
-            if($this->Categoria_model->updateCategoria($id, $data)){
-                redirect(base_url()."index.php/Categoria");
+            if($this->Producto_model->updateProducto($id, $data)){
+                redirect(base_url()."Producto");
             }
             else{
-                $this->session->set_flashdata("error", "No se pudo editar la categoria");
-                redirect(base_url()."index.php/Categoria/edit".$id);
+                $this->session->set_flashdata("error", "No se pudo editar el producto");
+                redirect(base_url()."Producto/edit".$id);
             }
         }
         else{
@@ -128,7 +151,7 @@ class Marketplace extends CI_Controller {
         $data = array(
             'estado' => "0"
         );
-        $this->Categoria_model->updateCategoria($id, $data);
-        echo "index.php/Categoria";
+        $this->Producto_model->updateProducto($id, $data);
+        echo "Producto";
     }
 }

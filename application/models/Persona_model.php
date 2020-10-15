@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Cliente_model extends CI_Model {
+class Persona_model extends CI_Model {
 
     public function login($correo, $clave){
         $this->db->where("correo", $correo);

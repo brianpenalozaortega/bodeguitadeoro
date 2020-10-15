@@ -20,9 +20,9 @@
                             </span>
                         </a>
                         <ul class="treeview-menu">
-                            <li><a href="<?php echo base_url(); ?>Categoria"><i class="fa fa-circle-o"></i> Categorias</a></li>
-                            <li><a href="<?php echo base_url(); ?>Cliente"><i class="fa fa-circle-o"></i> Clientes</a></li>
-                            <li><a href="<?php echo base_url(); ?>Producto"><i class="fa fa-circle-o"></i> Productos</a></li>
+                            <li><a href="<?php echo base_url(); ?>index.php/Categoria"><i class="fa fa-circle-o"></i> Categorias</a></li>
+                            <li><a href="<?php echo base_url(); ?>index.php/Producto"><i class="fa fa-circle-o"></i> Productos</a></li>
+                            <li><a href="<?php echo base_url(); ?>index.php/Cliente"><i class="fa fa-circle-o"></i> Clientes</a></li>
                         </ul>
                     </li>
                     <li class="treeview">
@@ -33,7 +33,7 @@
                             </span>
                         </a>
                         <ul class="treeview-menu">
-                            <li><a href="<?php echo base_url(); ?>Venta"><i class="fa fa-circle-o"></i> Ventas</a></li>
+                            <li><a href="<?php echo base_url(); ?>index.php/Venta"><i class="fa fa-circle-o"></i> Ventas</a></li>
                         </ul>
                     </li>
                     <li class="treeview">
@@ -47,7 +47,7 @@
                             <li><a href="../../index.html"><i class="fa fa-circle-o"></i> Categorias</a></li>
                             <li><a href="../../index.html"><i class="fa fa-circle-o"></i> Clientes</a></li>
                             <li><a href="../../index.html"><i class="fa fa-circle-o"></i> Productos</a></li>
-                            <li><a href="<?php echo base_url() ?>Reporte/Venta"><i class="fa fa-circle-o"></i> Ventas</a></li>
+                            <li><a href="<?php echo base_url() ?>index.php/Reporte/Venta"><i class="fa fa-circle-o"></i> Ventas</a></li>
                         </ul>
                     </li>
                     <li class="treeview">
@@ -59,8 +59,8 @@
                         </a>
                         <ul class="treeview-menu">
                             <li><a href="../../index.html"><i class="fa fa-circle-o"></i> Tipo Documentos</a></li>
-                            <li><a href="<?php echo base_url() ?>Usuario"><i class="fa fa-circle-o"></i> Usuarios</a></li>
-                            <li><a href="<?php echo base_url() ?>Permiso"><i class="fa fa-circle-o"></i> Permisos</a></li>
+                            <li><a href="<?php echo base_url() ?>index.php/Usuario"><i class="fa fa-circle-o"></i> Usuarios</a></li>
+                            <li><a href="<?php echo base_url() ?>index.php/Permiso"><i class="fa fa-circle-o"></i> Permisos</a></li>
                         </ul>
                     </li>
                 </ul>

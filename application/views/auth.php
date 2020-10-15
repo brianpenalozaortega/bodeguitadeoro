@@ -7,7 +7,7 @@
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   
-  <!-- base_url() = http://localhost/myshop/-->
+  <!-- base_url() = http://localhost/bodeguitadeoro/-->
 
   <!-- Bootstrap 3.3.7 -->
   <link rel="stylesheet" href="<?php echo base_url();?>assets/template/bootstrap/css/bootstrap.min.css">
@@ -21,8 +21,8 @@
 <body class="hold-transition login-page">
     <div class="login-box">
         <div class="login-logo">
-            <h2>SISTEMA DE VENTAS</h2>
-            <h2>ADMINISTRADOR</h2>
+            <h1>SISTEMA DE VENTAS</h1>
+            <h2>Bienvenido administrador</h2>
         </div>
         <!-- /.login-logo -->
         <div class="login-box-body">
@@ -32,18 +32,18 @@
                     <p><?php echo $this->session->flashdata("error") ?></p>
                 </div>
             <?php endif; ?>
-            <form action="<?php echo base_url();?>AdminAuth/login" method="post">
+            <form action="<?php echo base_url();?>index.php/Auth/login" method="post">
                 <div class="form-group has-feedback">
-                    <input type="text" class="form-control" placeholder="Usuario" name="username">
+                    <input type="text" class="form-control" placeholder="Correo" name="correo">
                     <span class="glyphicon glyphicon-user form-control-feedback"></span>
                 </div>
                 <div class="form-group has-feedback">
-                    <input type="password" class="form-control" placeholder="Password" name="password">
+                    <input type="password" class="form-control" placeholder="Clave" name="clave">
                     <span class="glyphicon glyphicon-lock form-control-feedback"></span>
                 </div>
                 <div class="row">
                     <div class="col-xs-12">
-                        <button type="submit" class="btn btn-primary btn-block btn-flat">Sign In</button>
+                        <button type="submit" class="btn btn-primary btn-block btn-flat">Ingresar</button>
                     </div>
                     <!-- /.col -->
                 </div>

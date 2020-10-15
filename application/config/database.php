@@ -75,9 +75,13 @@ $query_builder = TRUE;
 
 $db['default'] = array(
 	'dsn'	=> '',
-	'hostname' => 'phpcodeigniterymysql-mysqldbserver.mysql.database.azure.com',
-	'username' => 'rootroot@phpcodeigniterymysql-mysqldbserver',
-	'password' => 'MysqlMysqlMysql1',
+	// 'hostname' => 'phpcodeigniterymysql-mysqldbserver.mysql.database.azure.com',
+	// 'username' => 'rootroot@phpcodeigniterymysql-mysqldbserver',
+	// 'password' => 'MysqlMysqlMysql1',
+	// 'database' => 'db_bodeguitadeoro',
+	'hostname' => 'localhost',
+	'username' => 'root',
+	'password' => 'mysql',
 	'database' => 'db_bodeguitadeoro',
 	'dbdriver' => 'mysqli',
 	'dbprefix' => '',

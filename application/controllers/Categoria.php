@@ -1,28 +1,29 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Marketplace extends CI_Controller {
+class Categoria extends CI_Controller {
 
     #Constructor
     public function __construct(){
         #Voy a heredar lo que contenga la clase CI_Controller
         parent::__construct();
 
-        if(!$this->session->userdata("login")){
-            redirect(base_url()."index.php/Login");
+        if(!$this->session->userdata("auth")){
+            redirect(base_url()."index.php/Auth");
         }
 
-        #Llamar al model Producto
-        $this->load->model("Producto_model");
+        #Llamar al model Categoria
+        $this->load->model("Categoria_model");
     }
 
 	public function index(){
         $data = array(
-            'Productos' => $this->Producto_model->getProductos()
+            'categorias' => $this->Categoria_model->getCategorias()
         );
-		$this->load->view('clientelayouts/clienteheader');
-		$this->load->view('marketplace/list', $data);
-		$this->load->view('clientelayouts/clientefooter');
+		$this->load->view('layouts/header');
+		$this->load->view('layouts/aside');
+		$this->load->view('categoria/list', $data);
+		$this->load->view('layouts/footer');
     }
     
 	public function add(){
@@ -33,7 +34,6 @@ class Marketplace extends CI_Controller {
     }
 	public function store(){
         $nombre = $this->input->post("nombre");
-        $descripcion = $this->input->post("descripcion");
 
         // Para establecer una regla de validacion se tiene que ejecutar el metodo set_rules
         // Este metodo recibe 3 parametros
@@ -46,9 +46,7 @@ class Marketplace extends CI_Controller {
         // Devuelve valor booleano
         if($this->form_validation->run()){
             $data = array(
-                'nombre' => $nombre,
-                'descripcion' => $descripcion,
-                'estado' => "1"
+                'nombre' => $nombre
             );
     
             if($this->Categoria_model->saveCategoria($data)){
@@ -77,7 +75,6 @@ class Marketplace extends CI_Controller {
 	public function update(){
         $id = $this->input->post("id");
         $nombre = $this->input->post("nombre");
-        $descripcion = $this->input->post("descripcion");
 
         // Al modificar, se puede editar otro valor que no sea el que tenga con la restriccion de unico
         $categoriaActual = $this->Categoria_model->getCategoria($id);
@@ -99,8 +96,7 @@ class Marketplace extends CI_Controller {
         // Devuelve valor booleano
         if($this->form_validation->run()){
             $data = array(
-                'nombre' => $nombre,
-                'descripcion' => $descripcion
+                'nombre' => $nombre
             );
     
             if($this->Categoria_model->updateCategoria($id, $data)){

@@ -33,8 +33,9 @@ ENGINE = InnoDB;
 CREATE TABLE IF NOT EXISTS `db_bodeguitadeoro`.`tb_producto` (
   `idtb_producto` INT NOT NULL AUTO_INCREMENT COMMENT '',
   `nombre` VARCHAR(45) NULL COMMENT '',
-  `stock` DOUBLE NULL COMMENT '',
   `precio` INT NULL COMMENT '',
+  `stock` DOUBLE NULL COMMENT '',
+  `imagen` VARCHAR(245) NULL COMMENT '',
   `idtb_categoria` INT NOT NULL COMMENT '',
   PRIMARY KEY (`idtb_producto`)  COMMENT '',
   INDEX `fk_tb_producto_tb_categoria_idx` (`idtb_categoria` ASC)  COMMENT '',
@@ -154,5 +155,8 @@ INSERT INTO `db_bodeguitadeoro`.`tb_tipo_persona` (`nombre`) VALUES ('cliente');
 INSERT INTO `db_bodeguitadeoro`.`tb_tipo_persona` (`nombre`) VALUES ('administrador');
 
 
-
 INSERT INTO `db_bodeguitadeoro`.`tb_persona` (`nombre`, `apellido`, `correo`, `clave`, `idtb_tipo_persona`) VALUES ('Brian', 'Peñaloza Ortega', '2013016328@unfv.edu.pe', '40bd001563085fc35165329ea1ff5c5ecbdbbeef', '1');
+
+
+INSERT INTO `db_bodeguitadeoro`.`tb_persona` (`nombre`, `apellido`, `correo`, `clave`, `idtb_tipo_persona`) VALUES ('Juan', 'Vargas', 'juan@outlook.com', '40bd001563085fc35165329ea1ff5c5ecbdbbeef', '2');
+
