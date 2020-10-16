@@ -1,2 +1,0 @@
-Falta el archivo .htaccess
-y en la linea 38 del archivo config.php, la variable index_page deberia estar vacio

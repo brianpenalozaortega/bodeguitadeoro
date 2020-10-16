@@ -23,9 +23,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | a PHP script and you can easily do that on your own.
 |
 */
-// $config['base_url'] = 'http://localhost/bodeguitadeoro/';
-// https://phpcodeigniterymysql.azurewebsites.net/
-$config['base_url'] = 'https://phpcodeigniterymysql.azurewebsites.net/bodeguitadeoro/';
+$config['base_url'] = 'http://localhost/bodeguitadeoro/';
+//$config['base_url'] = 'https://phpcodeigniterymysql.azurewebsites.net/';
 
 
 /*

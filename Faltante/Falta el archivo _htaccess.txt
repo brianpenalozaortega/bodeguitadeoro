@@ -1,0 +1,19 @@
+Falta el archivo .htaccess
+y en la linea 38 del archivo config.php, la variable index_page deberia estar vacio
+
+No se agrego para ver como funciona, el archivo .htaccess debe estar en la raiz
+a la altura de la carpeta application o assets
+
+ESA ES LA ESTRUCTURA DEL ARCHIVO .htaccess, todo lo demas BORRAR
+
+
+
+
+Options +FollowSymLinks
+Options -Indexes
+DirectoryIndex index.html index.php
+RewriteEngine on
+RewriteCond $1 !^(index\.php|images|robots\.txt)
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ /bodeguitadeoroazurezip/index.php/$1 [L,QSA]
