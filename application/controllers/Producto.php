@@ -55,23 +55,18 @@ class Producto extends CI_Controller {
         // Devuelve valor booleano
         if($this->form_validation->run()){
 
-            $config = [
-                "upload_path" => "./assets/template/imagenes",
-                'allowed_types' => "png|jpg|gif|jpeg"
-            ];
-            $this->load->library("upload", $config);
 
-            if($this->upload->do_upload('imagen')){
-                $dataimagen = array(
-                    "upload_data" => $this->upload->data()
-                );
+            //if (empty($_FILES['userfile']['name'])){
+            if (false){
+                $imagen = '';
 
+                // ////////////////
                 $data = array(
                     'nombre' => $nombre,
                     'precio' => $precio,
                     'stock' => $stock,
                     // Nombre de la imagen con extension
-                    'imagen' => $dataimagen['upload_data']['file_name'],
+                    'imagen' => $imagen,
                     'idtb_categoria' => $categoria
                 );
         
@@ -82,10 +77,47 @@ class Producto extends CI_Controller {
                     $this->session->set_flashdata("error", "No se pudo guardar el nuevo producto");
                     redirect(base_url()."index.php/Producto/add");
                 }
+                // ////////////////
             }
             else{
-                echo $this->upload->display_errors();
+                // Debe estar este codigo en el form para que se cargue el archivo "imagen"
+                // enctype="multipart/form-data"
+                $config = [
+                    "upload_path" => "./assets/template/imagenes",
+                    'allowed_types' => "png|jpg|gif|jpeg"
+                ];
+                $this->load->library("upload", $config);
+
+                if($this->upload->do_upload('imagen')){
+                    $dataimagen = array(
+                        "upload_data" => $this->upload->data()
+                    );
+
+                    // ////////////////
+                    $data = array(
+                        'nombre' => $nombre,
+                        'precio' => $precio,
+                        'stock' => $stock,
+                        // Nombre de la imagen con extension
+                        'imagen' => $dataimagen['upload_data']['file_name'],
+                        'idtb_categoria' => $categoria
+                    );
+            
+                    if($this->Producto_model->saveProducto($data)){
+                        redirect(base_url()."index.php/Producto");
+                    }
+                    else{
+                        $this->session->set_flashdata("error", "No se pudo guardar el nuevo producto");
+                        redirect(base_url()."index.php/Producto/add");
+                    }
+                    // ////////////////
+                }
+                else{
+                    echo $this->upload->display_errors();
+                }
             }
+
+
         }
         else{
             // Se va a mostrar el formulario de Agregar nuevamente
@@ -105,20 +137,19 @@ class Producto extends CI_Controller {
     }
 	public function update(){
         $id = $this->input->post("id");
-        $codigo = $this->input->post("codigo");
         $nombre = $this->input->post("nombre");
-        $descripcion = $this->input->post("descripcion");
         $precio = $this->input->post("precio");
         $stock = $this->input->post("stock");
+        //$imagen = $this->input->post("imagen");
         $categoria = $this->input->post("categoria");
 
         // Al modificar, se puede editar otro valor que no sea el que tenga con la restriccion de unico
         $productoActual = $this->Producto_model->getProducto($id);
-        if($codigo == $productoActual->codigo){
+        if($nombre == $productoActual->nombre){
             $unique =  '';
         }
         else{
-            $unique =  '|is_unique[tb_producto.codigo]';
+            $unique =  '|is_unique[tb_producto.nombre]';
         }
 
         // Para establecer una regla de validacion se tiene que ejecutar el metodo set_rules
@@ -126,30 +157,84 @@ class Producto extends CI_Controller {
         // 1) Nombre del campo => NOMBRE DE LA VARIABLE
         // 2) Alias del campo => NOMBRE DE LO QUE SE VA A MOSTRAR QUE ESTA MAL
         // 3) Regla de validacion "requerido|unico[NombreDeLaTabla.Atributo]"
-        $this->form_validation->set_rules("codigo", "Codigo", "required".$unique);
-        $this->form_validation->set_rules("nombre", "Nombre", "required");
+        $this->form_validation->set_rules("nombre", "Nombre", "required".$unique);
         $this->form_validation->set_rules("precio", "Precio", "required");
         $this->form_validation->set_rules("stock", "Stock", "required");
 
         // Para ejecutar esta regla de validacion se debe llamar al metodo "RUN" de la libreria "form_validation"
         // Devuelve valor booleano
         if($this->form_validation->run()){
-            $data = array(
-                'codigo' => $codigo,
-                'nombre' => $nombre,
-                'descripcion' => $descripcion,
-                'precio' => $precio,
-                'stock' => $stock,
-                'idtb_categoria' => $categoria
-            );
-    
-            if($this->Producto_model->updateProducto($id, $data)){
-                redirect(base_url()."Producto");
+
+            
+            //if (empty($_FILES['userfile']['name'])){
+            if (false){
+                $fotoantigua = $this->Producto_model->getProducto($id);
+                $imagen = $fotoantigua->imagen;
+
+                // ////////////////////////
+                $data = array(
+                    'nombre' => $nombre,
+                    'precio' => $precio,
+                    'stock' => $stock,
+                    // Nombre de la imagen con extension
+                    'imagen' => $imagen,
+                    'idtb_categoria' => $categoria
+                );
+        
+                if($this->Producto_model->updateProducto($id, $data)){
+                    redirect(base_url()."index.php/Producto");
+                }
+                else{
+                    $this->session->set_flashdata("error", "No se pudo editar el producto");
+                    redirect(base_url()."index.php/Producto/edit".$id);
+                }
+                // ////////////////////////
             }
             else{
-                $this->session->set_flashdata("error", "No se pudo editar el producto");
-                redirect(base_url()."Producto/edit".$id);
+                // Debe estar este codigo en el form para que se cargue el archivo "imagen"
+                // enctype="multipart/form-data"
+                $config = [
+                    "upload_path" => "./assets/template/imagenes",
+                    'allowed_types' => "png|jpg|gif|jpeg"
+                ];
+                $this->load->library("upload", $config);
+
+                /////////////////////////
+                $fotoantigua = $this->Producto_model->getProducto($id);
+                unlink("./assets/template/imagenes/".$fotoantigua->imagen);
+                /////////////////////////
+                if($this->upload->do_upload('imagen')){
+                // if(true){
+                    $dataimagen = array(
+                        "upload_data" => $this->upload->data()
+                    );
+    
+                    // ////////////////////////
+                    $data = array(
+                        'nombre' => $nombre,
+                        'precio' => $precio,
+                        'stock' => $stock,
+                        // Nombre de la imagen con extension
+                        'imagen' => $dataimagen['upload_data']['file_name'],
+                        'idtb_categoria' => $categoria
+                    );
+            
+                    if($this->Producto_model->updateProducto($id, $data)){
+                        redirect(base_url()."index.php/Producto");
+                    }
+                    else{
+                        $this->session->set_flashdata("error", "No se pudo editar el producto");
+                        redirect(base_url()."index.php/Producto/edit".$id);
+                    }
+                    // ////////////////////////
+                }
+                else{
+                    echo $this->upload->display_errors();
+                    //echo "asd";
+                }
             }
+
+
         }
         else{
             // Se va a mostrar el formulario de Editar nuevamente
@@ -169,6 +254,10 @@ class Producto extends CI_Controller {
             'estado' => "0"
         );
         $this->Producto_model->updateProducto($id, $data);
-        echo "Producto";
+        /////////////////////////
+        $fotoantigua = $this->Producto_model->getProducto($id);
+        unlink("./assets/template/imagenes/".$fotoantigua->imagen);
+        /////////////////////////
+        echo "index.php/Producto";
     }
 }

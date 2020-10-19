@@ -24,21 +24,8 @@
                                 </p>
                              </div>
                         <?php endif;?>
-                        <form action="<?php echo base_url() ?>Producto/update" method="POST">
+                        <form action="<?php echo base_url() ?>index.php/Producto/update" method="POST" enctype="multipart/form-data">
                             <input type="hidden" value="<?php echo $producto->idtb_producto; ?>" name="id">
-                            <!-- El condicional es para que se muestre en rojo cuando se ha producido un error al agregar una nueva categoria -->
-                            <!-- En el condicional se valida que la variable error este vacio, esa variable viene del Controlador -->
-                            <div class="form-group <?php echo !empty(form_error("codigo")) ? 'has-error' : '' ?>">
-                                <label for="codigo">Codigo:</label>
-                                <!-- Para recuperar la informacion que se ha enviado se agrega la propiedad "value" a la etiqueta "input y se imprime el metodo set_value()" -->
-                                <!-- El metodo "set_value()" recibe como parametro el nombre del campo que se esta validando -->
-                                <input type="text" class="form-control" id="codigo" name="codigo" value="<?php echo !empty(form_error("codigo")) ? set_value("codigo") : $producto->codigo ?>">
-                                <!-- Imprimir el metodo form_error() recibe 3 parametros -->
-                                <!-- 1) Nombre del campo del cual estamos haciendo la validacion -->
-                                <!-- 2) La etiqueta donde se va a imprimir dicho mensaje "<span>" (Se puede estilizar) -->
-                                <!-- 3) Se indica el cierre de la etiqueta "</span>" -->
-                                <?php echo form_error("codigo", "<span class='help-block'>", "</span>") ?>
-                            </div>
                             <!-- El condicional es para que se muestre en rojo cuando se ha producido un error al agregar una nueva categoria -->
                             <!-- En el condicional se valida que la variable error este vacio, esa variable viene del Controlador -->
                             <div class="form-group <?php echo !empty(form_error("nombre")) ? 'has-error' : '' ?>">
@@ -51,10 +38,6 @@
                                 <!-- 2) La etiqueta donde se va a imprimir dicho mensaje "<span>" (Se puede estilizar) -->
                                 <!-- 3) Se indica el cierre de la etiqueta "</span>" -->
                                 <?php echo form_error("nombre", "<span class='help-block'>", "</span>") ?>
-                            </div>
-                            <div class="form-group">
-                                <label for="descripcion">Descripcion:</label>
-                                <input type="text" class="form-control" id="descripcion" name="descripcion" value="<?php echo $producto->descripcion ?>">
                             </div>
                             <!-- El condicional es para que se muestre en rojo cuando se ha producido un error al agregar una nueva categoria -->
                             <!-- En el condicional se valida que la variable error este vacio, esa variable viene del Controlador -->
@@ -81,6 +64,13 @@
                                 <!-- 2) La etiqueta donde se va a imprimir dicho mensaje "<span>" (Se puede estilizar) -->
                                 <!-- 3) Se indica el cierre de la etiqueta "</span>" -->
                                 <?php echo form_error("stock", "<span class='help-block'>", "</span>") ?>
+                            </div>
+                            <div class="form-group">
+                                <div class="btn btn-default btn-file">
+                                    <i class="fa fa-image"></i> Imagen
+                                    <input type="file" name="imagen" accept="image/x-png,image/gif,image/jpeg">
+                                </div>
+                                <p class="help-block">Max. 1MB</p>
                             </div>
                             <div class="form-group">
                                 <label for="categoria">Categoria:</label>

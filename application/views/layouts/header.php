@@ -56,12 +56,7 @@
                                 <li class="user-body">
                                     <div class="row">
                                         <div class="col-xs-12 text-center">
-                                            <a href="<?php echo base_url();?>Auth/logout"> Cerrar Sesión</a>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-xs-12 text-center">
-                                            <a href="<?php echo base_url();?>AdminAuth/logout"> Admin Cerrar Sesión</a>
+                                            <a href="<?php echo base_url();?>index.php/Auth/logout"> Cerrar Sesión</a>
                                         </div>
                                     </div>
                                     <!-- /.row -->

@@ -21,7 +21,7 @@
                                 <p>
                                     <i class="icon fa fa-ban"></i>
                                     <?php echo $this->session->flashdata("error"); ?>
-                                </p>                                
+                                </p>
                              </div>
                         <?php endif;?>
                         <form action="<?php echo base_url() ?>index.php/Producto/store" method="POST" enctype="multipart/form-data">
@@ -69,7 +69,7 @@
                                     <i class="fa fa-image"></i> Imagen
                                     <input type="file" name="imagen" accept="image/x-png,image/gif,image/jpeg">
                                 </div>
-                                <p class="help-block">Max. 32MB</p>
+                                <p class="help-block">Max. 1MB</p>
                             </div>
                             <!-- <div class="form-group">
                                 <input type="file" name="imagen" accept="image/*">

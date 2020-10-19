@@ -172,12 +172,12 @@ $(document).ready(function () {
         var producto = $(this).val();
         //alert(producto);
         var infoproducto = producto.split("*");
-        html = "<p><strong>Nombres: </strong>"+infoproducto[1]+"</p>"
-        html += "<p><strong>Apellidos: </strong>"+infoproducto[2]+"</p>"
-        html += "<p><strong>Telefono:  </strong>"+infoproducto[3]+"</p>"
-        html += "<p><strong>Direccion: </strong>"+infoproducto[4]+"</p>"
-        html += "<p><strong>RUC: </strong>"+infoproducto[5]+"</p>"
-        html += "<p><strong>Categoria: </strong>"+infoproducto[6]+"</p>";
+        html = "<p><strong>Nombre: </strong>"+infoproducto[1]+"</p>"
+        html += "<p><strong>Precio: </strong>"+infoproducto[2]+"</p>"
+        html += "<p><strong>Stock: </strong>"+infoproducto[3]+"</p>"
+        html += "<p><strong>Imagen: </strong></p>"
+        html += "<img src='"+infoproducto[6]+"assets/template/imagenes/"+infoproducto[4]+"' style='height:200px;'>"
+        html += "<p><strong>Categoria: </strong>"+infoproducto[5]+"</p>";
         $("#modal-default .modal-body").html(html);
     });
     $('#tableProductoList').DataTable({

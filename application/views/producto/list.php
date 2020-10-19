@@ -46,7 +46,7 @@
                                             <td><?php echo $producto->stock; ?></td>
                                             <td><img src='<?php echo base_url(); ?>assets/template/imagenes/<?php echo $producto->imagen; ?>' style='height:200px;'></td>
                                             <td><?php echo $producto->categoria; ?></td>
-                                            <?php $dataproducto = $producto->idtb_producto."*".$producto->nombre."*".$producto->precio."*".$producto->stock."*".$producto->categoria; ?>
+                                            <?php $dataproducto = $producto->idtb_producto."*".$producto->nombre."*".$producto->precio."*".$producto->stock."*".$producto->imagen."*".$producto->categoria."*".base_url(); ?>
                                             <td>
                                                 <div class="btn-group">
                                                     <!-- version categoria -->
