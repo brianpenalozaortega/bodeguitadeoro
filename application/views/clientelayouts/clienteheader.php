@@ -168,7 +168,7 @@
               <!-- Menu Toggle Button -->
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                 <i class="fa fa-shopping-cart"></i>
-                <span class="label label-danger">9</span>
+                <span class="label label-warning">9</span>
               </a>
               <ul class="dropdown-menu">
                 <li class="header">You have 9 tasks</li>

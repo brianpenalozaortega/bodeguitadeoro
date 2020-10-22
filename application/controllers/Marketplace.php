@@ -14,11 +14,13 @@ class Marketplace extends CI_Controller {
 
         #Llamar al model Producto
         $this->load->model("Producto_model");
+        $this->load->model("Categoria_model");
     }
 
 	public function index(){
         $data = array(
-            'Productos' => $this->Producto_model->getProductos()
+            'productos' => $this->Producto_model->getProductos(),
+            'categorias' => $this->Categoria_model->getCategorias()
         );
 		$this->load->view('clientelayouts/clienteheader');
 		$this->load->view('marketplace/list', $data);
