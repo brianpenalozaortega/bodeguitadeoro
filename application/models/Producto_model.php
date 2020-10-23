@@ -17,8 +17,11 @@ class Producto_model extends CI_Model {
     }
 
     public function getProducto($id){
+        $this->db->select("p.*, c.nombre as categoria");
+        $this->db->from("tb_producto p");
+        $this->db->join("tb_categoria c", "p.idtb_categoria = c.idtb_categoria");
         $this->db->where("idtb_producto", $id);
-        $resultado = $this->db->get("tb_producto");
+        $resultado = $this->db->get();
         return $resultado->row();
     }
 

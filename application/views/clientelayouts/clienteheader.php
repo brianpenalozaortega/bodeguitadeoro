@@ -166,9 +166,9 @@
             <!-- Tasks Menu -->
             <li class="dropdown tasks-menu">
               <!-- Menu Toggle Button -->
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+              <a href="<?php echo base_url(); ?>index.php/Carrito">
                 <i class="fa fa-shopping-cart"></i>
-                <span class="label label-warning">9</span>
+                <span class="label label-warning"><?php echo (empty($_SESSION['CARRITO'])) ? 0 : count($_SESSION['CARRITO']); ?></span>
               </a>
               <ul class="dropdown-menu">
                 <li class="header">You have 9 tasks</li>

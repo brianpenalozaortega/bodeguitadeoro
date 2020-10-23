@@ -43,6 +43,28 @@
 $(document).ready(function () {
     var base_url= "<?php echo base_url();?>";
 
+    $(".btn-remove-carrito-producto").on("click", function(e){
+        //Para evitar que se haga la accion del href
+        e.preventDefault();
+        //alert("eliminando");
+        ///////
+        //En la linea de abajo se captura el valor de href
+        var ruta = $(this).attr("href");
+        //El alert imprime
+        //http://localhost/myshop/categoria/delete/2
+        //alert(ruta);
+        $.ajax({
+            url: ruta,
+            type:"POST",
+            success:function(resp){
+                //alert(resp);
+                //http://localhost/MyShop/categoria
+                window.location.href = base_url + resp;
+            }
+        });
+        ///////
+    });
+
     $('.sidebar-menu').tree();
 })
 </script>

@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Marketplace extends CI_Controller {
+class Compra extends CI_Controller {
 
     #Constructor
     public function __construct(){
@@ -23,46 +23,7 @@ class Marketplace extends CI_Controller {
             'categorias' => $this->Categoria_model->getCategorias()
         );
 		$this->load->view('clientelayouts/clienteheader');
-		$this->load->view('marketplace/list', $data);
-		$this->load->view('clientelayouts/clientefooter');
-    }
-
-	public function agregarproducto($id){
-        $producto = $this->Producto_model->getProducto($id);
-        $data = array(
-            'idtb_producto' => $producto->idtb_producto,
-            'nombre' => $producto->nombre,
-            'imagen' => $producto->imagen,
-            'categoria' => $producto->categoria,
-            'precio' => $producto->precio
-        );
-
-        if(!isset($_SESSION['CARRITO'])){
-            $_SESSION['CARRITO'][0] = $data;
-            // $_SESSION['CARRITO'][0] = $producto;
-        }
-        else{
-            $cantidadcarrito = count($_SESSION['CARRITO']);
-            // $ultimoelemento = end($_SESSION['CARRITO']);
-            // $indiceultimoelemento = key();
-
-            $idproducto = array_column($_SESSION['CARRITO'],"idtb_producto");
-            if(in_array($id, $idproducto)){
-
-            }
-            else{
-                //$_SESSION['CARRITO'][$cantidadcarrito] = $data;
-                array_push($_SESSION['CARRITO'], $data);
-                // $_SESSION['CARRITO'][$cantidadcarrito] = $producto;
-            }
-        }
-
-        $data = array(
-            'productos' => $this->Producto_model->getProductos(),
-            'categorias' => $this->Categoria_model->getCategorias()
-        );
-		$this->load->view('clientelayouts/clienteheader');
-		$this->load->view('marketplace/list', $data);
+		$this->load->view('compra/list', $data);
 		$this->load->view('clientelayouts/clientefooter');
     }
     
