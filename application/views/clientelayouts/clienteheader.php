@@ -207,7 +207,7 @@
                 <!-- The user image in the navbar-->
                 <img src="<?php echo base_url()?>assets/template/dist/img/user2-160x160.jpg" class="user-image" alt="User Image">
                 <!-- hidden-xs hides the username on small devices so only the image appears. -->
-                <span class="hidden-xs">Alexander Pierce</span>
+                <span class="hidden-xs"><?php echo $this->session->userdata("nombre") ?></span>
               </a>
               <ul class="dropdown-menu">
                 <!-- The user image in the menu -->

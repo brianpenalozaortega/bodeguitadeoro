@@ -24,6 +24,20 @@
                 <hr> -->
                 <div class="row">
                     <div class="col-md-12">
+
+
+
+
+
+
+
+                    <?php if(!empty($_SESSION['CARRITO'])): ?>
+
+
+
+
+
+
                         <table id="tableProductoList" class="table table-bordered btn-hover">
                             <thead>
                                 <tr>
@@ -36,8 +50,6 @@
                                 </tr>
                             </thead>
                             <tbody>
-
-
 
 
 
@@ -110,15 +122,9 @@
 
 
 
-
-
-
-
-
-
                                 <?php $total = 0; ?>
                                 <?php $contador = 1; ?>
-                                <?php if(!empty($_SESSION['CARRITO'])): ?>
+                                
                                     <?php foreach($_SESSION['CARRITO'] as $indice=>$producto): ?>
                                         <tr>
                                             <td><?php echo $contador ?></td>
@@ -138,17 +144,40 @@
                                         <?php $total = $total + number_format($producto['precio'],2); ?>
                                         <?php $contador = 1 + $contador; ?>
                                     <?php endforeach; ?>
-                                <?php endif; ?>
-                                <tr>
-                                    <td colspan="4" align="right"><h3>Total</h3></td>
-                                    <td align="left"><h3>S/.<?php echo number_format($total,2) ?></h3></td>
-                                </tr>
-
-
+                                    <tr>
+                                        <td colspan="4" align="right"><h3>Total</h3></td>
+                                        <td align="left"><h3>S/.<?php echo number_format($total,2) ?></h3></td>
+                                    </tr>
+                                    
 
 
                             </tbody>
                         </table>
+                        
+                        <br>
+                        <!-- <div style="text-align: center;"> -->
+                        <div style="display: flex; justify-content: center; align-items: center;">
+                            <!-- <a href="#" class="btn btn-primary" style="width:200px;height:60px;display: flex; justify-content: center; align-items: center;">
+                                <span class="fa fa-plus"></span>
+                                Comprar
+                            </a> -->
+                            <form action="<?php echo base_url() ?>index.php/Carrito/store" method="POST">
+                                <input type="hidden" value="<?php echo number_format($total,2) ?>" name="total">
+                                <!-- <a href="<?php // echo base_url(); ?>index.php/Carrito/store" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Comprar</a> -->
+                                <button type="submit" class="btn btn-success btn-flat">Comprar</button>
+                            </form>
+                        </div>
+
+                    <?php else: ?>
+                        <div class="alert alert-success">
+                            No hay productos en el carrito
+                        </div>
+                    <?php endif; ?>
+
+
+
+
+
                     </div>
                 </div>
             </div>

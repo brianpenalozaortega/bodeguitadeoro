@@ -74,10 +74,10 @@
                         <span><?php echo $producto->nombre; ?></span>
                         <h5 class="card-title">S/.<?php echo $producto->precio; ?></h5>
                         <p class="card-text"><?php echo $producto->categoria; ?></p>
-                        <button class="btn btn-primary" name="btnAccion" value="Agregar" type="submit">Agregar al carrito</button>
+                        <!-- <button class="btn btn-primary" name="btnAccion" value="Agregar" type="submit">Agregar al carrito</button> -->
                         <a href="<?php echo base_url(); ?>index.php/Marketplace/agregarproducto/<?php echo $producto->idtb_producto; ?>" class="btn btn-primary btn-flat">
-                          <span class="fa fa-plus"></span>
-                          Agregar producto
+                          <!-- <span class="fa fa-plus"></span> -->
+                          Agregar al carrito
                         </a>
                         <p class="card-text"></p>
                       </div>

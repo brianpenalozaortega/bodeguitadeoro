@@ -15,6 +15,7 @@ class Carrito extends CI_Controller {
         #Llamar al model Producto
         $this->load->model("Producto_model");
         $this->load->model("Categoria_model");
+        $this->load->model("Pedido_model");
     }
 
 	public function index(){
@@ -35,36 +36,24 @@ class Carrito extends CI_Controller {
 		$this->load->view('layouts/footer');
     }
 	public function store(){
-        $nombre = $this->input->post("nombre");
-        $descripcion = $this->input->post("descripcion");
+        $idtb_persona = $this->session->userdata("id");
+        date_default_timezone_set("America/Lima");
+        $fecha = date("c");
+        $monto = $this->input->post("total");
+        $num_pedido = date("Y").date("m").date("d").date("H").date("i").date("s");
 
-        // Para establecer una regla de validacion se tiene que ejecutar el metodo set_rules
-        // Este metodo recibe 3 parametros
-        // 1) Nombre del campo => NOMBRE DE LA VARIABLE
-        // 2) Alias del campo => NOMBRE DE LO QUE SE VA A MOSTRAR QUE ESTA MAL
-        // 3) Regla de validacion "requerido|unico[NombreDeLaTabla.Atributo]"
-        $this->form_validation->set_rules("nombre", "Nombre", "required|is_unique[tb_categoria.nombre]");
+        $data = array(
+            'fecha' => $fecha,
+            'monto' => $monto,
+            'num_pedido' => $num_pedido,
+            'idtb_cliente' => $idtb_persona
+        );
 
-        // Para ejecutar esta regla de validacion se debe llamar al metodo "RUN" de la libreria "form_validation"
-        // Devuelve valor booleano
-        if($this->form_validation->run()){
-            $data = array(
-                'nombre' => $nombre,
-                'descripcion' => $descripcion,
-                'estado' => "1"
-            );
-    
-            if($this->Categoria_model->saveCategoria($data)){
-                redirect(base_url()."index.php/Categoria");
-            }
-            else{
-                $this->session->set_flashdata("error", "No se pudo guardar la nueva categoria");
-                redirect(base_url()."index.php/Categoria/add");
-            }
+        if($this->Pedido_model->save($data)){
+            redirect(base_url()."index.php/Compra");
         }
         else{
-            // Se va a mostrar el formulario de Agregar nuevamente
-            $this->add();
+            redirect(base_url()."index.php/Carrito");
         }
     }
 
