@@ -35,6 +35,7 @@ class Login extends CI_Controller {
             $data = array(
                 'id' => $res->idtb_persona,
                 'nombre' => $res->nombre,
+                'correo' => $res->correo,
                 'rol' => $res->idtb_tipo_persona,
                 'login' => TRUE
             );

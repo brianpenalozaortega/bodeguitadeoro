@@ -64,6 +64,10 @@ class Pedido_model extends CI_Model {
         //Devuelve valor booleano
         return $this->db->insert("tb_pedido", $data);
     }
+    public function saveDetallePedido($data){
+        //Devuelve valor booleano
+        return $this->db->insert("tb_detalle_pedido", $data);
+    }
 
     // Asi es, esta bien ... sin tabla
     // Capturar ID de ultima venta creada

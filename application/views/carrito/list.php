@@ -161,10 +161,10 @@
                                 <span class="fa fa-plus"></span>
                                 Comprar
                             </a> -->
-                            <form action="<?php echo base_url() ?>index.php/Carrito/store" method="POST">
+                            <form action="<?php echo base_url() ?>index.php/Pago" method="POST">
                                 <input type="hidden" value="<?php echo number_format($total,2) ?>" name="total">
                                 <!-- <a href="<?php // echo base_url(); ?>index.php/Carrito/store" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Comprar</a> -->
-                                <button type="submit" class="btn btn-success btn-flat">Comprar</button>
+                                <button type="submit" class="btn btn-success btn-flat">Elegir metodo de pago</button>
                             </form>
                         </div>
 

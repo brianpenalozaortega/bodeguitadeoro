@@ -37,25 +37,129 @@ class Carrito extends CI_Controller {
     }
 	public function store(){
         $idtb_persona = $this->session->userdata("id");
+        $correo = $this->session->userdata("correo");
         date_default_timezone_set("America/Lima");
         $fecha = date("c");
         $monto = $this->input->post("total");
         $num_pedido = date("Y").date("m").date("d").date("H").date("i").date("s");
+        
+        // $this->sendemailg($correo);
+        // $this->sendemailo($correo);
 
         $data = array(
             'fecha' => $fecha,
             'monto' => $monto,
             'num_pedido' => $num_pedido,
-            'idtb_cliente' => $idtb_persona
+            'idtb_persona' => $idtb_persona,
+            'idtb_estado' => 1
         );
 
         if($this->Pedido_model->save($data)){
-            redirect(base_url()."index.php/Compra");
+            redirect(base_url()."index.php/Pago");
         }
         else{
             redirect(base_url()."index.php/Carrito");
         }
     }
+    // Activar acceso de terceros en seguridad
+    protected function sendemailg($correo){
+        // $this->load->library('email');
+
+        $from = 'juan.bodeguitadeoro@gmail.com';
+        $to = 'juan.bodeguitadeoro@outlook.com';
+
+        $subject = 'Welcome to the Jungle';
+        $emailcontent = '<p>MENSAJE</p> <strong>probando</strong>';
+
+
+        // $config['protocol'] = 'sendmail';
+        // $config['smtp_host'] = 'localhost';
+        // $config['smtp_port'] = '25';
+        // $config['protocol'] = 'smtp';
+        // $config['smtp_host'] = 'ssl://smtp.gmail.com';
+        // $config['smtp_port'] = '465';
+        // $config['smtp_user'] = 'juan.bodeguitadeoro@gmail.com';
+        // $config['smtp_pass'] = 'Juan2020.';
+
+        $config['protocol'] = 'mail';
+        $config['smtp_host'] = 'localhost';
+        $config['smtp_port'] = '25';
+        $config['smtp_user'] = 'juan.bodeguitadeoro@gmail.com';
+        $config['smtp_pass'] = 'Juan2020.';
+        $config['smtp_crypto'] = 'ssl';
+        $config['mailpath'] = '/usr/sbin/sendmail';
+
+        // $config['smtp_timeout'] = '60';
+        $config['charset'] = 'utf-8';
+        $config['newline'] = '\r\n';
+        $config['mailtype'] = 'html';
+        $config['validation'] = TRUE;
+        $config['wordwrap'] = TRUE;
+
+        $this->email->initialize($config);
+        $this->email->set_mailtype("html");
+        $this->email->from($from, 'asd');
+        $this->email->to($to);
+        $this->email->cc('juan.bodeguitadeoro@gmail.com');
+        $this->email->subject($subject);
+        $this->email->message($emailcontent);
+        
+        if($this->email->send()){
+            redirect(base_url()."index.php/Compra");
+        }
+        else{
+            echo $this->email->print_debugger();
+        }
+    }
+    // Activar acceso de terceros en seguridad
+    protected function sendemailo($correo){
+        // $this->load->library('email');
+
+        $from = 'juan.bodeguitadeoro@outlook.com';
+        $to = 'juan.bodeguitadeoro@gmail.com';
+
+        $subject = 'Welcome to the Jungle';
+        $emailcontent = '<p>MENSAJE</p> <strong>probando</strong>';
+
+
+        // $config['protocol'] = 'sendmail';
+        // $config['smtp_host'] = 'localhost';
+        // $config['smtp_port'] = '25';
+        // $config['protocol'] = 'smtp';
+        // $config['smtp_host'] = 'ssl://smtp.gmail.com';
+        // $config['smtp_port'] = '465';
+        // $config['smtp_user'] = 'juan.bodeguitadeoro@gmail.com';
+        // $config['smtp_pass'] = 'Juan2020.';
+
+        $config['protocol'] = 'smtp';
+        $config['smtp_host'] = 'smtp.office365.com';
+        $config['smtp_port'] = '587';
+        $config['smtp_user'] = 'juan.bodeguitadeoro@outlook.com';
+        $config['smtp_pass'] = 'Juan2020.';
+
+        // $config['smtp_timeout'] = '60';
+        // $config['charset'] = 'utf-8';
+        // $config['newline'] = '\r\n';
+        // $config['mailtype'] = 'html';
+        // $config['validation'] = 'TRUE';
+
+        $this->email->initialize($config);
+        $this->email->set_mailtype("html");
+        $this->email->from($from, 'asd');
+        $this->email->to($to);
+        $this->email->cc('juan.bodeguitadeoro@gmail.com');
+        $this->email->subject($subject);
+        $this->email->message($emailcontent);
+        
+        if($this->email->send()){
+            redirect(base_url()."index.php/Compra");
+        }
+        else{
+            echo $this->email->print_debugger();
+        }
+    }
+
+
 
 	public function edit($id){
         $data = array(
