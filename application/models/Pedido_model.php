@@ -26,14 +26,23 @@ class Pedido_model extends CI_Model {
     //     return $resultados->result();
     // }
 
-    public function getVenta($id){
-        $this->db->select("v.*, c.nombre, c.direccion, c.telefono, c.documento, tc.nombre as tipocomprobante");
-        $this->db->from("tb_venta v");
-        $this->db->join("tb_cliente c", "v.idtb_cliente = c.idtb_cliente");
-        $this->db->join("tb_tipo_comprobante tc", "v.idtb_tipo_comprobante = tc.idtb_tipo_comprobante");
-        $this->db->where("v.idtb_venta", $id);
+    public function getPedido($idpedido){
+        $this->db->select("ped.*, per.*");
+        // , per.nombre, c.direccion, c.telefono, c.documento, tc.nombre as tipocomprobante
+        $this->db->from("tb_pedido ped");
+        $this->db->join("tb_persona per", "ped.idtb_persona = per.idtb_persona");
+        // $this->db->join("tb_tipo_comprobante tc", "v.idtb_tipo_comprobante = tc.idtb_tipo_comprobante");
+        $this->db->where("ped.idtb_pedido", $idpedido);
         $resultado = $this->db->get();
         return $resultado->row();
+    }
+    public function getDetallePedido($idpedido){
+        $this->db->select("dp.*, p.*");
+        $this->db->from("tb_detalle_pedido dp");
+        $this->db->join("tb_producto p", "dp.idtb_producto = p.idtb_producto");
+        $this->db->where("dp.idtb_pedido", $idpedido);
+        $resultados = $this->db->get();
+        return $resultados->result();
     }
 
     public function getVentasByDate($fechainicio, $fechafin){
@@ -43,6 +52,21 @@ class Pedido_model extends CI_Model {
         $this->db->join("tb_tipo_comprobante tc", "v.idtb_tipo_comprobante = tc.idtb_tipo_comprobante");
         $this->db->where("v.fecha >= ", $fechainicio);
         $this->db->where("v.fecha <= ", $fechafin);
+        $resultados = $this->db->get();
+        if($resultados->num_rows() > 0){
+            return $resultados->result();
+        }
+        else{
+            return false;
+        }
+    }
+
+    public function getPedidosByCliente(){
+        $this->db->select("p.*, e.nombre as estado");
+        $this->db->from("tb_pedido p");
+        // $this->db->join("tb_detalle_pedido pd", "pd.idtb_pedido = pd.idtb_pedido");
+        $this->db->join("tb_estado e", "p.idtb_estado = e.idtb_estado");
+        $this->db->where("p.idtb_persona = ", $this->session->userdata("id"));
         $resultados = $this->db->get();
         if($resultados->num_rows() > 0){
             return $resultados->result();

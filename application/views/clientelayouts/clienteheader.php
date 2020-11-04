@@ -246,7 +246,7 @@
               </ul>
             </li>
             <!-- bodeguitadeoro -->
-            <li><a href="<?php echo base_url(); ?>index.php/Compra">Mis compras</a></li>
+            <li><a href="<?php echo base_url(); ?>index.php/Compra">Mis pedidos</a></li>
             <li><a href="<?php echo base_url(); ?>index.php/Login/logout">Cerrar sesion</a></li>
             <!-- /. bodeguitadeoro -->
           </ul>

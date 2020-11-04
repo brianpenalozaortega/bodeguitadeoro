@@ -52,6 +52,7 @@ INSERT INTO `tb_producto` (`nombre`, `stock`, `precio`, `imagen`, `idtb_categori
 INSERT INTO `tb_estado` (`nombre`) VALUES ('Registrado');
 INSERT INTO `tb_estado` (`nombre`) VALUES ('Listo para entregar');
 INSERT INTO `tb_estado` (`nombre`) VALUES ('En delivery');
-INSERT INTO `tb_estado` (`nombre`) VALUES ('Entregado');
+INSERT INTO `tb_estado` (`nombre`) VALUES ('Completado');
 
 
+-- update db_bodeguitadeoro.tb_pedido set idtb_estado = 3 where DAY(fecha) = 2;

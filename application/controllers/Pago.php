@@ -19,10 +19,15 @@ class Pago extends CI_Controller {
     }
 
 	public function index(){
-        $data = array(
-            'productos' => $this->Producto_model->getProductos(),
-            'categorias' => $this->Categoria_model->getCategorias()
-        );
+        // $data = array(
+        //     'productos' => $this->Producto_model->getProductos(),
+        //     'categorias' => $this->Categoria_model->getCategorias()
+        // );
+
+        $data = 0;
+        // foreach($_SESSION['CARRITO'] as $indice=>$producto){
+        //     $totala = $totala + $producto['precio'];
+        // }
 
 		$this->load->view('clientelayouts/clienteheader');
 		$this->load->view('pago/list');
@@ -79,6 +84,8 @@ class Pago extends CI_Controller {
 
                 $this->Pedido_model->saveDetallePedido($datadetalle);
             }
+
+            unset($_SESSION['CARRITO']);
 
             redirect(base_url()."index.php/Compra");
         }

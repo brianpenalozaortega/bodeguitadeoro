@@ -12,15 +12,13 @@ class Compra extends CI_Controller {
             redirect(base_url()."index.php/Login");
         }
 
-        #Llamar al model Producto
-        $this->load->model("Producto_model");
-        $this->load->model("Categoria_model");
+        #Llamar al model Pedido
+        $this->load->model("Pedido_model");
     }
 
 	public function index(){
         $data = array(
-            'productos' => $this->Producto_model->getProductos(),
-            'categorias' => $this->Categoria_model->getCategorias()
+            'clientepedidos' => $this->Pedido_model->getPedidosByCliente()
         );
 		$this->load->view('clientelayouts/clienteheader');
 		$this->load->view('compra/list', $data);
@@ -119,11 +117,15 @@ class Compra extends CI_Controller {
         }
     }
 
-	public function view($id){
+    public function view(){
+        $idpedido = $this->input->post("id");
+
         $data = array(
-            'categoria' => $this->Categoria_model->getCategoria($id)
+            'pedido' => $this->Pedido_model->getPedido($idpedido),
+            'detalles' => $this->Pedido_model->getDetallePedido($idpedido)
         );
-		$this->load->view('categoria/view', $data);
+
+        $this->load->view("compra/view", $data);
     }
 
 	public function delete($id){

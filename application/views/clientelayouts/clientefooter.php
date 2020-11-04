@@ -65,6 +65,40 @@ $(document).ready(function () {
         ///////
     });
 
+    $('#tableClientePedidoList').DataTable({
+        "language": {
+            "lengthMenu": "Mostrar _MENU_ registros por pagina",
+            "zeroRecords": "No se encontraron resultados en su busqueda",
+            "searchPlaceholder": "Buscar registros",
+            "info": "Mostrando registros de _START_ al _END_ de un total de  _TOTAL_ registros",
+            "infoEmpty": "No existen registros",
+            "infoFiltered": "(filtrado de un total de _MAX_ registros)",
+            "search": "Buscar:",
+            "paginate": {
+                "first": "Primero",
+                "last": "Último",
+                "next": "Siguiente",
+                "previous": "Anterior"
+            },
+        }
+    });
+    $(document).on("click", ".btn-view-cliente-pedido", function(){
+        // Se captura el id del pedido por medio del value del boton
+        valor_id = $(this).val();
+        // Por medio de Ajax se envia el id al metodo view
+        $.ajax({
+            url: base_url + "index.php/Compra/view",
+            type: "POST",
+            dataType: "html",
+            data:{
+                id: valor_id
+            },
+            success: function(data){
+                $("#modal-default .modal-body").html(data);
+            }
+        });
+    });
+
     $('.sidebar-menu').tree();
 })
 </script>
