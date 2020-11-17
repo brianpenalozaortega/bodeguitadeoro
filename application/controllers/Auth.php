@@ -25,7 +25,7 @@ class Auth extends CI_Controller {
         $correo = $this->input->post("correo");
         $clave = $this->input->post("clave");
 
-        $res = $this->Persona_model->login($correo, sha1($clave));
+        $res = $this->Persona_model->auth($correo, sha1($clave));
 
         if(!$res){
             $this->session->set_flashdata("error", "El correo y/o la clave son incorrectos");

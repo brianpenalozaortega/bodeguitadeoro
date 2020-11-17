@@ -92,7 +92,7 @@ class Pedido_model extends CI_Model {
 
     public function anhos(){
         $this->db->select("YEAR(fecha) as year");
-        $this->db->from("tb_venta");
+        $this->db->from("tb_pedido");
         $this->db->group_by("year");
         $this->db->order_by("year desc");
         $resultados = $this->db->get();

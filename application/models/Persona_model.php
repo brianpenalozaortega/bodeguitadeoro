@@ -3,11 +3,15 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Persona_model extends CI_Model {
 
-    public function login($correo, $clave){
-        $this->db->where("correo", $correo);
-        $this->db->where("clave", $clave);
+    public function auth($correo, $clave){
+        $this->db->select("p.*");
+        $this->db->from("tb_persona p");
+        $this->db->join("tb_tipo_persona tp", "p.idtb_tipo_persona = tp.idtb_tipo_persona");
+        $this->db->where("p.correo", $correo);
+        $this->db->where("p.clave", $clave);
+        $this->db->where("p.idtb_tipo_persona", 1);
+        $resultados = $this->db->get();
 
-        $resultados = $this->db->get("tb_persona");
         if ($resultados->num_rows() == 1) {
             return $resultados->row();
         }

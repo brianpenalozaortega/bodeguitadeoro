@@ -17,14 +17,14 @@
                         <!-- small box -->
                         <div class="small-box bg-aqua">
                             <div class="inner">
-                                <h3><?php echo $cantClientes;?></h3>
-                                <p>Clientes</p>
+                                <h3><?php echo $registrados; ?></h3>
+                                <p>Registrados</p>
                             </div>
                             <div class="icon">
                                 <i class="ion ion-bag"></i>
                             </div>
-                            <a href="<?php echo base_url();?>Cliente" class="small-box-footer">
-                                Ver Clientes 
+                            <a href="<?php echo base_url(); ?>Cliente" class="small-box-footer">
+                                Ver Pedidos
                                 <i class="fa fa-arrow-circle-right"></i>
                             </a>
                         </div>
@@ -34,14 +34,14 @@
                         <!-- small box -->
                         <div class="small-box bg-green">
                             <div class="inner">
-                                <h3><?php echo $cantProductos;?></h3>
-                                <p>Productos</p>
+                                <h3><?php echo $listos; ?></h3>
+                                <p>Listos para entregar</p>
                             </div>
                             <div class="icon">
                                 <i class="ion ion-stats-bars"></i>
                             </div>
-                            <a href="<?php echo base_url();?>Producto" class="small-box-footer">
-                                Ver Productos 
+                            <a href="<?php echo base_url(); ?>Producto" class="small-box-footer">
+                                Ver Pedidos
                                 <i class="fa fa-arrow-circle-right"></i>
                             </a>
                         </div>
@@ -51,14 +51,14 @@
                         <!-- small box -->
                         <div class="small-box bg-yellow">
                             <div class="inner">
-                                <h3><?php echo $cantUsuarios;?></h3>
-                                <p>Usuarios</p>
+                                <h3><?php echo $delivery; ?></h3>
+                                <p>En delivery</p>
                             </div>
                             <div class="icon">
                                 <i class="ion ion-person-add"></i>
                             </div>
                             <a href="<?php echo base_url();?>Usuario" class="small-box-footer">
-                                Ver Usuarios 
+                                Ver Pedidos
                                 <i class="fa fa-arrow-circle-right"></i>
                             </a>
                         </div>
@@ -68,14 +68,14 @@
                         <!-- small box -->
                         <div class="small-box bg-red">
                             <div class="inner">
-                                <h3><?php echo $cantVentas;?></h3>
-                                <p>Ventas</p>
+                                <h3><?php echo $completados; ?></h3>
+                                <p>Completados</p>
                             </div>
                             <div class="icon">
                                 <i class="ion ion-pie-graph"></i>
                             </div>
                             <a href="<?php echo base_url();?>Venta" class="small-box-footer">
-                                Ver Ventas 
+                                Ver Pedidos
                                 <i class="fa fa-arrow-circle-right"></i>
                             </a>
                         </div>

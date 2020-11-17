@@ -47,6 +47,12 @@
                                                 <span class="label label-<?php echo $pedido->idtb_estado == 1 ? "info" : ($pedido->idtb_estado == 2 ? "success" : ($pedido->idtb_estado == 3 ? "warning" : "danger")); ?>">
                                                     <?php echo $pedido->estado; ?>
                                                 </span>
+                                                <!-- 
+                                                info
+                                                success
+                                                warning
+                                                danger 
+                                                -->
                                             </td>
                                             <td>
                                                 <div class="btn-group">
