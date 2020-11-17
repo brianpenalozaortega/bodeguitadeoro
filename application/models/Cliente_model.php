@@ -25,6 +25,16 @@ class Cliente_model extends CI_Model {
         return $resultados->result();
     }
 
+    public function getClientes(){
+        $this->db->select("p.*, c.*");
+        $this->db->from("tb_persona p");
+        $this->db->join("tb_tipo_persona tp", "tp.idtb_tipo_persona = p.idtb_tipo_persona");
+        $this->db->join("tb_cliente c", "c.idtb_persona = p.idtb_persona");
+        $this->db->where("p.idtb_tipo_persona", "2");
+        $resultados = $this->db->get();
+        return $resultados->result();
+    }
+
     public function savepersona($data){
         return $this->db->insert("tb_persona", $data);
     }

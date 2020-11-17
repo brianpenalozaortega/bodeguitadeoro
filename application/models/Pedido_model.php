@@ -3,11 +3,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Pedido_model extends CI_Model {
 
-    public function getVentas(){
-        $this->db->select("v.*, c.nombre, tc.nombre as tipocomprobante");
-        $this->db->from("tb_venta v");
-        $this->db->join("tb_cliente c", "v.idtb_cliente = c.idtb_cliente");
-        $this->db->join("tb_tipo_comprobante tc", "v.idtb_tipo_comprobante = tc.idtb_tipo_comprobante");
+    public function getPedidos(){
+        $this->db->select("p.*, e.nombre as estado");
+        $this->db->from("tb_pedido p");
+        $this->db->join("tb_estado e", "p.idtb_estado = e.idtb_estado");
         $resultados = $this->db->get();
         if($resultados->num_rows() > 0){
             return $resultados->result();
@@ -16,15 +15,6 @@ class Pedido_model extends CI_Model {
             return false;
         }
     }
-    // public function getVentas(){
-    //     $this->db->select("c.*, tc.nombre as tipocliente, td.nombre as tipodocumento");
-    //     $this->db->from("tb_cliente c");
-    //     $this->db->join("tb_tipo_cliente tc", "c.idtb_tipo_cliente = tc.idtb_tipo_cliente");
-    //     $this->db->join("tb_tipo_documento td", "c.idtb_tipo_documento = td.idtb_tipo_documento");
-    //     $this->db->where("c.estado", "1");
-    //     $resultados = $this->db->get();
-    //     return $resultados->result();
-    // }
 
     public function getPedido($idpedido){
         $this->db->select("ped.*, per.*");
@@ -37,9 +27,10 @@ class Pedido_model extends CI_Model {
         return $resultado->row();
     }
     public function getDetallePedido($idpedido){
-        $this->db->select("dp.*, p.*");
+        $this->db->select("dp.*, p.*, c.nombre as categoria");
         $this->db->from("tb_detalle_pedido dp");
         $this->db->join("tb_producto p", "dp.idtb_producto = p.idtb_producto");
+        $this->db->join("tb_categoria c", "p.idtb_categoria = c.idtb_categoria");
         $this->db->where("dp.idtb_pedido", $idpedido);
         $resultados = $this->db->get();
         return $resultados->result();

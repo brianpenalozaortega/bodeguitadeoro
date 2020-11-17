@@ -11,14 +11,14 @@
             <div class="box-header with-border">
               <h3 class="box-title">Productos</h3>
               <br><br>
-              <div class="form-group">
+              <!-- <div class="form-group">
                 <label for="categoria">Categoria:</label>
                 <select name="categoria" id="categoria" class="form-control">
                     <?php foreach($categorias as $categoria): ?>
                         <option value="<?php echo $categoria->idtb_categoria ?>"><?php echo $categoria->nombre ?></option>
                     <?php endforeach; ?>
                 </select>
-              </div>
+              </div> -->
               <div class="box-tools pull-right">
                 <a href="#" class="btn btn-box-tool" data-toggle="tooltip" title="Previous"><i class="fa fa-chevron-left"></i></a>
                 <a href="#" class="btn btn-box-tool" data-toggle="tooltip" title="Next"><i class="fa fa-chevron-right"></i></a>
@@ -99,14 +99,14 @@
 
 
             <!-- /.box-footer -->
-            <div class="box-footer">
+            <!-- <div class="box-footer">
               <div class="pull-right">
                 <button type="button" class="btn btn-default"><i class="fa fa-reply"></i> Reply</button>
                 <button type="button" class="btn btn-default"><i class="fa fa-share"></i> Forward</button>
               </div>
               <button type="button" class="btn btn-default"><i class="fa fa-trash-o"></i> Delete</button>
               <button type="button" class="btn btn-default"><i class="fa fa-print"></i> Print</button>
-            </div>
+            </div> -->
             <!-- /.box-footer -->
 
 

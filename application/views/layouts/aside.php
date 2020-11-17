@@ -33,7 +33,7 @@
                             </span>
                         </a>
                         <ul class="treeview-menu">
-                            <li><a href="<?php echo base_url(); ?>index.php/Venta"><i class="fa fa-circle-o"></i> Ventas</a></li>
+                            <li><a href="<?php echo base_url(); ?>index.php/Pedido"><i class="fa fa-circle-o"></i> Pedidos</a></li>
                         </ul>
                     </li>
                     <li class="treeview">

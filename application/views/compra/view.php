@@ -27,9 +27,9 @@
         <br> -->
         <b>Numero de pedido: </b><?php echo $pedido->num_pedido; ?>
         <br>
-        <b>Fecha: </b><?php echo $pedido->fecha; ?>
-        <br>
-		<b>Hora: </b><?php echo $pedido->fecha; ?>
+        <b>Fecha y Hora: </b><?php echo $pedido->fecha; ?>
+        <!-- <br>
+		<b>Hora: </b><?php echo $pedido->fecha; ?> -->
 	</div>	
 </div>
 <br>
@@ -40,6 +40,7 @@
 				<tr>
                     <th>N°</th>
                     <th>Producto</th>
+					<th>Categoria</th>
                     <th>Imagen</th>
 					<th>Precio</th>
 					<th>Cantidad</th>
@@ -48,16 +49,19 @@
 			</thead>
 			<tbody>
                 <?php $contador = 1; ?>
+				<?php $total = 0; ?>
 				<?php foreach($detalles as $detalle):?>
                     <tr>
                         <td><?php echo $contador ?></td>
                         <td><?php echo $detalle->nombre; ?></td>
-                        <td><?php echo "imagen"; ?></td>
+                        <td><?php echo $detalle->categoria; ?></td>
+						<td align="center"><img src='<?php echo base_url(); ?>assets/template/imagenes/<?php echo $detalle->imagen; ?>' style='height:100px;width:100px;'></td>
                         <td><?php echo $detalle->precio; ?></td>
                         <td><?php echo 1; ?></td>
                         <td><?php echo $detalle->precio; ?></td>
                     </tr>
                     <?php $contador = 1 + $contador; ?>
+					<?php $total = $total + number_format($detalle->precio, 2); ?>
 				<?php endforeach;?>
 			</tbody>
 			<tfoot>
@@ -74,8 +78,8 @@
 					<td><?php echo 1; ?></td>
 				</tr> -->
 				<tr>
-					<td colspan="5" class="text-right"><strong>Total:</strong></td>
-					<td><?php echo 1; ?></td>
+					<td colspan="6" class="text-right"><strong>Total:</strong></td>
+					<td><?php echo number_format($total, 2) ?></td>
 				</tr>
 			</tfoot>
 		</table>
