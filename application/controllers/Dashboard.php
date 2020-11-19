@@ -30,4 +30,10 @@ class Dashboard extends CI_Controller {
 		$this->load->view('layouts/footer');
     }
     
+    public function getData(){
+        $year = $this->input->post("year");
+        $resultados = $this->Pedido_model->montos($year);
+        echo json_encode($resultados);
+    }
+
 }

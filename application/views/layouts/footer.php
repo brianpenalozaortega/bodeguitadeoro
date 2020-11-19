@@ -39,7 +39,7 @@
 <script src="<?php echo base_url();?>assets/template/dist/js/demo.js"></script>
 <script>
 $(document).ready(function () {
-    var base_url= "<?php echo base_url();?>";
+    var base_url= "<?php echo base_url(); ?>";
     var yearactual = (new Date).getFullYear();
 
     $(".btn-remove-categoria").on("click", function(e){
@@ -232,7 +232,7 @@ $(document).ready(function () {
     //     html += "<p><strong>Categoria: </strong>"+infoventa[6]+"</p>";
     //     $("#modal-default .modal-body").html(html);
     // });
-    $('#tableVentaList').DataTable({
+    $('#tablePedidoList').DataTable({
         "language": {
             "lengthMenu": "Mostrar _MENU_ registros por pagina",
             "zeroRecords": "No se encontraron resultados en su busqueda",
@@ -405,7 +405,7 @@ $(document).ready(function () {
     });
 
 
-    $('#tableReporteVentaList').DataTable( {
+    $('#tableReportePedidoList').DataTable( {
         dom: 'Bfrtip',
         buttons: [
             // 'copy', 'csv', 'excel', 'pdf', 'print'
@@ -413,14 +413,14 @@ $(document).ready(function () {
             {
                 // Los botones que se va a estrar mostrando (Excel)
                 extend: 'excelHtml5',
-                title: 'Listado de Ventas',
+                title: 'Listado de Pedidos',
                 exportOptions:{
                     columns: [0, 1, 2, 3, 4, 5]
                 }
             },
             {
                 extend: 'pdfHtml5',
-                title: 'Listado de Ventas',
+                title: 'Listado de Pedidos',
                 exportOptions:{
                     columns: [0, 1, 2, 3, 4, 5]
                 }
@@ -611,10 +611,10 @@ function Graficando(meses, montos, yearanho){
         type: 'column'
     },
     title: {
-        text: 'Monto acumulado por las ventas de los meses'
+        text: 'Monto acumulado de pedidos'
     },
     subtitle: {
-        text: 'Anho ' + yearanho
+        text: 'Año ' + yearanho
     },
     xAxis: {
         categories: 
@@ -692,7 +692,7 @@ function Graficando(meses, montos, yearanho){
 function datagrafico(base_url, yearanho){
     namesMonth = ["Ene", "Feb", "Mar", "Abr", "May", "Jun", "Jul", "Ago", "Set", "Oct", "Nov", "Dic"];
     $.ajax({
-        url: base_url + "AdminDashboard/getData",
+        url: base_url + "index.php/Dashboard/getData",
         type: "POST",
         data:{
             year: yearanho

@@ -44,13 +44,13 @@
                             </span>
                         </a>
                         <ul class="treeview-menu">
-                            <li><a href="#"><i class="fa fa-circle-o"></i> Categorias</a></li>
+                            <!-- <li><a href="#"><i class="fa fa-circle-o"></i> Categorias</a></li>
                             <li><a href="#"><i class="fa fa-circle-o"></i> Clientes</a></li>
-                            <li><a href="#"><i class="fa fa-circle-o"></i> Productos</a></li>
-                            <li><a href="<?php echo base_url() ?>index.php/Reporte/Venta"><i class="fa fa-circle-o"></i> Ventas</a></li>
+                            <li><a href="#"><i class="fa fa-circle-o"></i> Productos</a></li> -->
+                            <li><a href="<?php echo base_url() ?>index.php/Reporte"><i class="fa fa-circle-o"></i> Pedidos</a></li>
                         </ul>
                     </li>
-                    <li class="treeview">
+                    <!-- <li class="treeview">
                         <a href="#">
                             <i class="fa fa-user-circle-o"></i> <span>Administrador</span>
                             <span class="pull-right-container">
@@ -62,7 +62,7 @@
                             <li><a href="<?php echo base_url() ?>index.php/Usuario"><i class="fa fa-circle-o"></i> Usuarios</a></li>
                             <li><a href="<?php echo base_url() ?>index.php/Permiso"><i class="fa fa-circle-o"></i> Permisos</a></li>
                         </ul>
-                    </li>
+                    </li> -->
                 </ul>
             </section>
             <!-- /.sidebar -->

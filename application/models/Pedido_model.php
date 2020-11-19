@@ -36,13 +36,13 @@ class Pedido_model extends CI_Model {
         return $resultados->result();
     }
 
-    public function getVentasByDate($fechainicio, $fechafin){
-        $this->db->select("v.*, c.nombre, tc.nombre as tipocomprobante");
-        $this->db->from("tb_venta v");
-        $this->db->join("tb_cliente c", "v.idtb_cliente = c.idtb_cliente");
-        $this->db->join("tb_tipo_comprobante tc", "v.idtb_tipo_comprobante = tc.idtb_tipo_comprobante");
-        $this->db->where("v.fecha >= ", $fechainicio);
-        $this->db->where("v.fecha <= ", $fechafin);
+    public function getPedidosByDate($fechainicio, $fechafin){
+        $this->db->select("ped.*, per.nombre");
+        $this->db->from("tb_pedido ped");
+        $this->db->join("tb_persona per", "ped.idtb_persona = per.idtb_persona");
+        // $this->db->join("tb_tipo_comprobante tc", "v.idtb_tipo_comprobante = tc.idtb_tipo_comprobante");
+        $this->db->where("ped.fecha >= ", $fechainicio);
+        $this->db->where("ped.fecha <= ", $fechafin);
         $resultados = $this->db->get();
         if($resultados->num_rows() > 0){
             return $resultados->result();
@@ -101,8 +101,8 @@ class Pedido_model extends CI_Model {
 
     // SELECT MONTH(fecha) as mes, SUM(total) as monto FROM `tb_venta` WHERE YEAR(fecha) in (2015)
     public function montos($year){
-        $this->db->select("MONTH(fecha) as mes, SUM(total) as monto");
-        $this->db->from("tb_venta");
+        $this->db->select("MONTH(fecha) as mes, SUM(monto) as monto");
+        $this->db->from("tb_pedido");
         $this->db->where("fecha >=", $year."-01-01");
         $this->db->where("fecha <=", $year."-12-31");
         $this->db->group_by("mes");
