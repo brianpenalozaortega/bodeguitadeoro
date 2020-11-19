@@ -55,7 +55,8 @@
                                 <p>En delivery</p>
                             </div>
                             <div class="icon">
-                                <i class="ion ion-person-add"></i>
+                                <!-- <i class="ion ion-person-add"></i> -->
+                                <i class="ion ion-ios-cart-outline"></i>
                             </div>
                             <a href="<?php echo base_url();?>index.php/Pedido" class="small-box-footer">
                                 Ver Pedidos

@@ -367,17 +367,20 @@ $(document).ready(function () {
 
         Sumar();
     });
-    $(document).on("click", ".btn-view-venta", function(){
+    // Esta comentado parte del codigo porque esta hecho de la otra manera
+    $(document).on("click", ".btn-view-pedido", function(){
         //  Se captura el id de la venta por medio del value del boton
         valor_id = $(this).val();
         // Por medio de Ajax se envia el id al metodo view
         $.ajax({
-            url: base_url + "Venta/view",
+            url: base_url + "index.php/Pedido/view/" + valor_id,
             type: "POST",
-            dataType: "html",
-            data:{
-                id: valor_id
-            },
+            // Esta parte
+            // dataType: "html",
+            // data:{
+            //     id: valor_id
+            // },
+            // Esta parte
             success: function(data){
                 $("#modal-default .modal-body").html(data);
             }
@@ -386,7 +389,7 @@ $(document).ready(function () {
     $(document).on("click", ".btn-print", function(){
         $("#modal-default .modal-body").print({
             // No necesariamente va esto
-            title: "Comprobante de venta"
+            title: "Comprobante"
 
             // Todos los elementos parametrizables
             // globalStyles: true,

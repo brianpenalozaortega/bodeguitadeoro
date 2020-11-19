@@ -99,6 +99,27 @@ $(document).ready(function () {
         });
     });
 
+    $(document).on("click", ".btn-print", function(){
+        $("#modal-default .modal-body").print({
+            // No necesariamente va esto
+            title: "Comprobante"
+
+            // Todos los elementos parametrizables
+            // globalStyles: true,
+        	// mediaPrint: false,
+        	// stylesheet: null,
+        	// noPrintSelector: ".no-print",
+        	// iframe: true,
+        	// append: null,
+        	// prepend: null,
+        	// manuallyCopyFormValues: true,
+        	// deferred: $.Deferred(),
+        	// timeout: 750,
+        	// title: null,
+        	// doctype: '<!doctype html>'
+        });
+    });
+
     $('.sidebar-menu').tree();
 })
 </script>

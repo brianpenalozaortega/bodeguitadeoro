@@ -4,9 +4,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Pedido_model extends CI_Model {
 
     public function getPedidos(){
-        $this->db->select("p.*, e.nombre as estado");
-        $this->db->from("tb_pedido p");
-        $this->db->join("tb_estado e", "p.idtb_estado = e.idtb_estado");
+        $this->db->select("ped.*, e.nombre as estado, per.nombre, per.apellido");
+        $this->db->from("tb_pedido ped");
+        $this->db->join("tb_estado e", "ped.idtb_estado = e.idtb_estado");
+        $this->db->join("tb_persona per", "per.idtb_persona = ped.idtb_persona");
         $resultados = $this->db->get();
         if($resultados->num_rows() > 0){
             return $resultados->result();
@@ -17,10 +18,11 @@ class Pedido_model extends CI_Model {
     }
 
     public function getPedido($idpedido){
-        $this->db->select("ped.*, per.*");
+        $this->db->select("ped.*, per.*, c.celular, c.direccion, c.referencia");
         // , per.nombre, c.direccion, c.telefono, c.documento, tc.nombre as tipocomprobante
         $this->db->from("tb_pedido ped");
         $this->db->join("tb_persona per", "ped.idtb_persona = per.idtb_persona");
+        $this->db->join("tb_cliente c", "per.idtb_persona = c.idtb_persona");
         // $this->db->join("tb_tipo_comprobante tc", "v.idtb_tipo_comprobante = tc.idtb_tipo_comprobante");
         $this->db->where("ped.idtb_pedido", $idpedido);
         $resultado = $this->db->get();

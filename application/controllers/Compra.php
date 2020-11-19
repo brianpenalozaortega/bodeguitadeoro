@@ -117,6 +117,7 @@ class Compra extends CI_Controller {
         }
     }
 
+    // Hay 2 maneras, esta es una de ellas
     public function view(){
         $idpedido = $this->input->post("id");
 
@@ -125,7 +126,7 @@ class Compra extends CI_Controller {
             'detalles' => $this->Pedido_model->getDetallePedido($idpedido)
         );
 
-        $this->load->view("compra/view", $data);
+        $this->load->view("pedido/view", $data);
     }
 
 	public function delete($id){

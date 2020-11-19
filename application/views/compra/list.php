@@ -42,7 +42,7 @@
                                             <td><?php echo $contador ?></td>
                                             <td><?php echo $pedido->num_pedido; ?></td>
                                             <td><?php echo $pedido->fecha; ?></td>
-                                            <td><?php echo $pedido->monto; ?></td>
+                                            <td><?php echo number_format($pedido->monto, 2); ?></td>
                                             <td>
                                                 <span class="label label-<?php echo $pedido->idtb_estado == 1 ? "info" : ($pedido->idtb_estado == 2 ? "success" : ($pedido->idtb_estado == 3 ? "warning" : "danger")); ?>">
                                                     <?php echo $pedido->estado; ?>
@@ -93,7 +93,8 @@
         
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-danger pull-right" data-dismiss="modal">Cerrar</button>
+                <button type="button" class="btn btn-danger pull-left" data-dismiss="modal">Cerrar</button>
+                <button type="button" class="btn btn-primary btn-print"><span class="fa fa-print"> Imprimir</span></button>
             </div>
         </div>
         <!-- /.modal-content -->
