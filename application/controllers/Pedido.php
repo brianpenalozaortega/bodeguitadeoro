@@ -12,8 +12,9 @@ class Pedido extends CI_Controller {
             redirect(base_url()."index.php/Auth");
         }
 
-        #Llamar al model Pedido
+        #Llamar al model Pedido y Estado
         $this->load->model("Pedido_model");
+        $this->load->model("Estado_model");
     }
 
 	public function index(){
@@ -28,7 +29,8 @@ class Pedido extends CI_Controller {
 
 	public function edit($id){
         $data = array(
-            'pedido' => $this->Pedido_model->getPedido($id)
+            'pedido' => $this->Pedido_model->getPedido($id),
+            'estados' => $this->Estado_model->getEstados()
         );
 		$this->load->view('layouts/header');
 		$this->load->view('layouts/aside');
@@ -36,43 +38,19 @@ class Pedido extends CI_Controller {
 		$this->load->view('layouts/footer');
     }
 	public function update(){
-        $id = $this->input->post("id");
-        $nombre = $this->input->post("nombre");
+        $id = $this->input->post("idpedido");
+        $estado = $this->input->post("estado");
 
-        // Al modificar, se puede editar otro valor que no sea el que tenga con la restriccion de unico
-        $categoriaActual = $this->Categoria_model->getCategoria($id);
-        if($nombre == $categoriaActual->nombre){
-            $unique =  '';
+        $data = array(
+            'idtb_estado' => $estado
+        );
+
+        if($this->Pedido_model->updatePedido($id, $data)){
+            redirect(base_url()."index.php/Pedido");
         }
         else{
-            $unique =  '|is_unique[tb_categoria.nombre]';
-        }
-
-        // Para establecer una regla de validacion se tiene que ejecutar el metodo set_rules
-        // Este metodo recibe 3 parametros
-        // 1) Nombre del campo => NOMBRE DE LA VARIABLE
-        // 2) Alias del campo => NOMBRE DE LO QUE SE VA A MOSTRAR QUE ESTA MAL
-        // 3) Regla de validacion "requerido|unico[NombreDeLaTabla.Atributo]"
-        $this->form_validation->set_rules("nombre", "Nombre", "required".$unique);
-
-        // Para ejecutar esta regla de validacion se debe llamar al metodo "RUN" de la libreria "form_validation"
-        // Devuelve valor booleano
-        if($this->form_validation->run()){
-            $data = array(
-                'nombre' => $nombre
-            );
-    
-            if($this->Categoria_model->updateCategoria($id, $data)){
-                redirect(base_url()."index.php/Categoria");
-            }
-            else{
-                $this->session->set_flashdata("error", "No se pudo editar la categoria");
-                redirect(base_url()."index.php/Categoria/edit".$id);
-            }
-        }
-        else{
-            // Se va a mostrar el formulario de Editar nuevamente
-            $this->edit($id);
+            $this->session->set_flashdata("error", "No se pudo editar el pedido");
+            redirect(base_url()."index.php/Pedido/edit".$id);
         }
     }
 

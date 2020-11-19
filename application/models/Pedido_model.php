@@ -18,9 +18,10 @@ class Pedido_model extends CI_Model {
     }
 
     public function getPedido($idpedido){
-        $this->db->select("ped.*, per.*, c.celular, c.direccion, c.referencia");
+        $this->db->select("ped.*, per.*, c.celular, c.direccion, c.referencia, e.nombre as estado");
         // , per.nombre, c.direccion, c.telefono, c.documento, tc.nombre as tipocomprobante
         $this->db->from("tb_pedido ped");
+        $this->db->join("tb_estado e", "ped.idtb_estado = e.idtb_estado");
         $this->db->join("tb_persona per", "ped.idtb_persona = per.idtb_persona");
         $this->db->join("tb_cliente c", "per.idtb_persona = c.idtb_persona");
         // $this->db->join("tb_tipo_comprobante tc", "v.idtb_tipo_comprobante = tc.idtb_tipo_comprobante");
@@ -119,8 +120,8 @@ class Pedido_model extends CI_Model {
         return $resultado->row();
     }
 
-    public function updateCliente($id, $data){
-        $this->db->where("idtb_cliente", $id);
-        return $this->db->update("tb_cliente", $data);
+    public function updatePedido($id, $data){
+        $this->db->where("idtb_pedido", $id);
+        return $this->db->update("tb_pedido", $data);
     }
 }
