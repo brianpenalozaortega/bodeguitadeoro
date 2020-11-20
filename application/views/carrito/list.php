@@ -46,6 +46,10 @@
                                     <th>Imagen</th>
                                     <th>Categoria</th>
                                     <th>Precio</th>
+                                    <!-- // SOLO ESTO EN CANTIDAD -->
+                                    <th>Cantidad</th>
+                                    <th>Subtotal</th>
+                                    <!-- // SOLO ESTO EN CANTIDAD -->
                                     <th>Opciones</th>
                                 </tr>
                             </thead>
@@ -132,6 +136,25 @@
                                             <td align="center"><img src='<?php echo base_url(); ?>assets/template/imagenes/<?php echo $producto['imagen']; ?>' style='height:150px;width:150px;'></td>
                                             <td><?php echo $producto['categoria'] ?></td>
                                             <td>S/.<?php echo number_format($producto['precio'],2) ?></td>
+                                            <!-- // SOLO ESTO EN CANTIDAD -->
+                                            <!-- <td><?php echo $producto['cantidad'] ?></td> -->
+                                            <td>
+                                                <span class="next-input-group-addon next-before">
+                                                    <button>
+                                                        <i class="next-icon next-icon-minus next-xs next-btn-icon next-icon-alone"></i>
+                                                    </button>
+                                                </span>
+                                                <span>
+                                                    <input value="1">
+                                                </span>
+                                                <span class="next-input-group-addon next-after">
+                                                    <button>
+                                                        <i class="next-icon next-icon-add next-xs next-btn-icon next-icon-alone"></i>
+                                                    </button>
+                                                </span>
+                                            </td>
+                                            <td>S/.<?php echo number_format($producto['precio'] * $producto['cantidad'], 2) ?></td>
+                                            <!-- // SOLO ESTO EN CANTIDAD -->
                                             <td>
                                                 <div class="btn-group">
                                                     <!-- // $producto['idtb_producto']; -->

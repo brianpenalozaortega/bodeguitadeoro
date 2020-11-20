@@ -34,7 +34,10 @@ class Marketplace extends CI_Controller {
             'nombre' => $producto->nombre,
             'imagen' => $producto->imagen,
             'categoria' => $producto->categoria,
-            'precio' => $producto->precio
+            'precio' => $producto->precio,
+            // SOLO ESTO EN CANTIDAD
+            'cantidad' => 1
+            // SOLO ESTO EN CANTIDAD
         );
 
         if(!isset($_SESSION['CARRITO'])){
