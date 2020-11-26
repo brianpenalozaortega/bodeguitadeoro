@@ -18,6 +18,7 @@ class Carrito extends CI_Controller {
         $this->load->model("Pedido_model");
     }
 
+    // Metodo que permite visualizar el carrito de compras del cliente
 	public function index(){
         $data = array(
             'productos' => $this->Producto_model->getProductos(),

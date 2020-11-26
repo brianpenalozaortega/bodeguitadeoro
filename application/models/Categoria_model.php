@@ -9,7 +9,6 @@ class Categoria_model extends CI_Model {
     }
 
     public function saveCategoria($data){
-        //Devuelve valor booleano
         return $this->db->insert("tb_categoria", $data);
     }
 

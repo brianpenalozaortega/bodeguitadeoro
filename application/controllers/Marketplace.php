@@ -17,6 +17,8 @@ class Marketplace extends CI_Controller {
         $this->load->model("Categoria_model");
     }
 
+    // Metodo donde se muestran los productos en venta
+    // para que el cliente los pueda agregar al carrito
 	public function index(){
         $data = array(
             'productos' => $this->Producto_model->getProductos(),

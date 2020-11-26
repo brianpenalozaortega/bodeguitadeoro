@@ -12,7 +12,6 @@ class Producto_model extends CI_Model {
     }
 
     public function saveProducto($data){
-        //Devuelve valor booleano
         return $this->db->insert("tb_producto", $data);
     }
 

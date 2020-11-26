@@ -16,7 +16,8 @@ class Compra extends CI_Controller {
         $this->load->model("Pedido_model");
     }
 
-	public function index(){
+    // Metodo que permite visualizar al cliente los pedidos realizados
+    public function index(){
         $data = array(
             'clientepedidos' => $this->Pedido_model->getPedidosByCliente()
         );
