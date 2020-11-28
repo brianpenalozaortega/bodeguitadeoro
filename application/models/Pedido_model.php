@@ -61,6 +61,7 @@ class Pedido_model extends CI_Model {
         // $this->db->join("tb_detalle_pedido pd", "pd.idtb_pedido = pd.idtb_pedido");
         $this->db->join("tb_estado e", "p.idtb_estado = e.idtb_estado");
         $this->db->where("p.idtb_persona = ", $this->session->userdata("id"));
+        $this->db->order_by("p.idtb_pedido desc");
         $resultados = $this->db->get();
         if($resultados->num_rows() > 0){
             return $resultados->result();

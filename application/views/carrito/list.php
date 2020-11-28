@@ -13,189 +13,124 @@
         <!-- Default box -->
         <div class="box box-solid">
             <div class="box-body">
-                <!-- <div class="row">
-                    <div class="col-md-12">
-                        <a href="<?php echo base_url(); ?>index.php/Producto/add" class="btn btn-primary btn-flat">
-                            <span class="fa fa-plus"></span>
-                            Agregar producto
-                        </a>
-                    </div>
-                </div>
-                <hr> -->
                 <div class="row">
                     <div class="col-md-12">
 
+                        <?php // print_r($_SESSION['CARRITO']); ?>
+                        <!-- <br><br> -->
+                        <?php // print_r($_SESSION['CARRITO'][11]); ?>
+                        <!-- <br><br> -->
+                        <?php // print_r($_SESSION['CARRITO'][11]['categoria']); ?>
 
-
-
-
-
-
-                    <?php if(!empty($_SESSION['CARRITO'])): ?>
-
-
-
-
-
-
-                        <table id="tableProductoList" class="table table-bordered btn-hover">
-                            <thead>
-                                <tr>
-                                    <th>#</th>
-                                    <th>Nombre</th>
-                                    <th>Imagen</th>
-                                    <th>Categoria</th>
-                                    <th>Precio</th>
-                                    <!-- // SOLO ESTO EN CANTIDAD -->
-                                    <th>Cantidad</th>
-                                    <th>Subtotal</th>
-                                    <!-- // SOLO ESTO EN CANTIDAD -->
-                                    <th>Opciones</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-
-
-
-
-                                <?php if(!empty($productos)): ?>
-                                    <?php foreach($productos as $producto): ?>
-                                        <tr>
-                                            <td><?php echo $producto->idtb_producto; ?></td>
-                                            <td><?php echo $producto->nombre; ?></td>
-                                            <td><?php echo $producto->precio; ?></td>
-                                            <td><?php echo $producto->stock; ?></td>
-                                            <td><img src='<?php echo base_url(); ?>assets/template/imagenes/<?php echo $producto->imagen; ?>' style='height:200px;'></td>
-                                            <td><?php echo $producto->categoria; ?></td>
-                                            <?php $dataproducto = $producto->idtb_producto."*".$producto->nombre."*".$producto->precio."*".$producto->stock."*".$producto->imagen."*".$producto->categoria."*".base_url(); ?>
-                                            <td>
-                                                <div class="btn-group">
-                                                    <!-- version categoria -->
-                                                    <!-- <button type="button" class="btn btn-info btn-view-cliente" data-toggle="modal" data-target="#modal-default" value="<?php echo $cliente->idtb_cliente; ?>"> -->
-                                                    <!-- version cliente -->
-                                                    <button type="button" class="btn btn-info btn-view-producto" data-toggle="modal" data-target="#modal-default" value="<?php echo $dataproducto ?>">
-                                                        <span class="fa fa-search"></span>
-                                                    </button>
-                                                    <a href="<?php echo base_url() ?>index.php/Producto/edit/<?php echo $producto->idtb_producto; ?>" class="btn btn-warning">
-                                                        <span class="fa fa-pencil"></span>
-                                                    </a>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                    <?php endforeach; ?>
-                                <?php endif; ?>
-
-
-
-
-
-                                        <!-- <tr>
-                                            <td>1</td>
-                                            <td>Libro PHP</td>
-                                            <td>Imagen</td>
-                                            <td>Categoria</td>
-                                            <td>$10</td>
-                                            <td>
-                                                <div class="btn-group">
-                                                    <a href="#" class="btn btn-danger">
-                                                        <span class="fa fa-times"></span>
-                                                    </a>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>2</td>
-                                            <td>Libro Java</td>
-                                            <td>Imagen</td>
-                                            <td>Categoria</td>
-                                            <td>$20</td>
-                                            <td>
-                                                <div class="btn-group">
-                                                    <a href="#" class="btn btn-danger">
-                                                        <span class="fa fa-times"></span>
-                                                    </a>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td colspan="4" align="right"><h3>Total</h3></td>
-                                            <td align="left"><h3>$<?php echo number_format(30,2) ?></h3></td>
-                                        </tr> -->
-
-
-
-
-
-                                <?php $total = 0; ?>
-                                <?php $contador = 1; ?>
-                                
-                                    <?php foreach($_SESSION['CARRITO'] as $indice=>$producto): ?>
-                                        <tr>
-                                            <td><?php echo $contador ?></td>
-                                            <td><?php echo $producto['nombre'] ?></td>
-                                            <td align="center"><img src='<?php echo base_url(); ?>assets/template/imagenes/<?php echo $producto['imagen']; ?>' style='height:150px;width:150px;'></td>
-                                            <td><?php echo $producto['categoria'] ?></td>
-                                            <td>S/.<?php echo number_format($producto['precio'],2) ?></td>
-                                            <!-- // SOLO ESTO EN CANTIDAD -->
-                                            <!-- <td><?php echo $producto['cantidad'] ?></td> -->
-                                            <td>
-                                                <span class="next-input-group-addon next-before">
-                                                    <button>
-                                                        <i class="next-icon next-icon-minus next-xs next-btn-icon next-icon-alone"></i>
-                                                    </button>
-                                                </span>
-                                                <span>
-                                                    <input value="1">
-                                                </span>
-                                                <span class="next-input-group-addon next-after">
-                                                    <button>
-                                                        <i class="next-icon next-icon-add next-xs next-btn-icon next-icon-alone"></i>
-                                                    </button>
-                                                </span>
-                                            </td>
-                                            <td>S/.<?php echo number_format($producto['precio'] * $producto['cantidad'], 2) ?></td>
-                                            <!-- // SOLO ESTO EN CANTIDAD -->
-                                            <td>
-                                                <div class="btn-group">
-                                                    <!-- // $producto['idtb_producto']; -->
-                                                    <a href="<?php echo base_url() ?>index.php/Carrito/delete/<?php echo $producto['idtb_producto']; ?>" class="btn btn-danger btn-remove-carrito-producto">
-                                                        <span class="fa fa-remove"></span>
-                                                    </a>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        <?php $total = $total + number_format($producto['precio'],2); ?>
-                                        <?php $contador = 1 + $contador; ?>
-                                    <?php endforeach; ?>
+                        <?php if(!empty($_SESSION['CARRITO'])): ?>
+                            <table id="tableProductoList" class="table table-bordered btn-hover">
+                                <thead>
                                     <tr>
-                                        <td colspan="4" align="right"><h3>Total</h3></td>
-                                        <td align="left"><h3>S/.<?php echo number_format($total,2) ?></h3></td>
+                                        <th>#</th>
+                                        <th>Nombre</th>
+                                        <th>Imagen</th>
+                                        <th>Categoria</th>
+                                        <th>Precio</th>
+                                        <!-- // SOLO ESTO EN CANTIDAD -->
+                                        <th>Stock Max.</th>
+                                        <th>Cantidad</th>
+                                        <th>Subtotal</th>
+                                        <!-- // SOLO ESTO EN CANTIDAD -->
+                                        <th>Opciones</th>
                                     </tr>
-                                    
+                                </thead>
+                                <tbody>
+                                    <?php $total = 0; ?>
+                                    <?php $subtotal = 0; ?>
+                                    <?php $contador = 1; ?>
+                                    <?php $stockbyproducto = 0; ?>
+                                        <?php foreach($_SESSION['CARRITO'] as $indice=>$producto): ?>
+                                            <tr>
+                                                <td><?php echo $contador ?></td>
+                                                <td><?php echo $producto['nombre'] ?></td>
+                                                <td align="center"><img src='<?php echo base_url(); ?>assets/template/imagenes/<?php echo $producto['imagen']; ?>' style='height:150px;width:150px;'></td>
+                                                <td><?php echo $producto['categoria'] ?></td>
+                                                <td>S/.<?php echo number_format($producto['precio'],2) ?></td>
+                                                <!-- // SOLO ESTO EN CANTIDAD -->
+                                                <td>
+                                                    <?php foreach($productos as $product): ?>
+                                                        <?php if($product->idtb_producto == $producto['idtb_producto']): ?>
+                                                            <?php $stockbyproducto = $product->stock; ?>
+                                                            <?php echo $product->stock ?>
+                                                        <?php endif; ?>
+                                                    <?php endforeach; ?>
+                                                </td>
+                                                <?php $datacarrito = $producto['idtb_producto']."*".$producto['cantidad']."*".$stockbyproducto; ?>
+                                                <td>
+                                                    <button class="btn btn-danger btn-danger-minus btn-sm" data-id="<?php echo $producto['idtb_producto'] ?>" value="<?php echo $datacarrito ?>">
+                                                        <span class="fa fa-minus"></span>
+                                                    </button>
+                                                    <input type="number" name="cantidad" value="<?php echo $producto['cantidad'] ?>" min="1" max="<?php echo $stockbyproducto ?>" disabled>    
+                                                    <button class="btn btn-info btn-info-plus btn-sm" data-id="<?php echo $producto['idtb_producto'] ?>" value="<?php echo $datacarrito ?>">
+                                                        <span class="fa fa-plus"></span>
+                                                    </button>
+                                                    <!-- <br>
+                                                    <hr>
+                                                    <br> -->
+                                                    <!-- <input class="quantities" type="number" name="quantity" value="<?php echo $producto['cantidad'] ?>" min="1" max="<?php echo $stockbyproducto ?>" required> -->
+                                                    <!-- <td><input type='text' name='cantidades[]' value='1' class='cantidades'></td> -->
+                                                </td>
+                                                <!-- <td>
+                                                    <span class="next-input-group-addon next-before">
+                                                        <button>
+                                                            <i class="next-icon next-icon-minus next-xs next-btn-icon next-icon-alone"></i>
+                                                        </button>
+                                                    </span>
+                                                    <span>
+                                                        <input value="1">
+                                                    </span>
+                                                    <span class="next-input-group-addon next-after">
+                                                        <button>
+                                                            <i class="next-icon next-icon-add next-xs next-btn-icon next-icon-alone"></i>
+                                                        </button>
+                                                    </span>
+                                                </td> -->
+                                                <?php $subtotal = $producto['precio'] * $producto['cantidad']; ?>
+                                                <td>S/.<?php echo number_format($subtotal, 2) ?></td>
+                                                <!-- // SOLO ESTO EN CANTIDAD -->
+                                                <td>
+                                                    <div class="btn-group">
+                                                        <!-- // $producto['idtb_producto']; -->
+                                                        <a href="<?php echo base_url() ?>index.php/Carrito/delete/<?php echo $producto['idtb_producto']; ?>" class="btn btn-danger btn-remove-carrito-producto">
+                                                            <span class="fa fa-remove"></span>
+                                                        </a>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <?php $total = $total + $subtotal; ?>
+                                            <?php $contador = 1 + $contador; ?>
+                                        <?php endforeach; ?>
+                                        <tr>
+                                            <td colspan="7" align="right"><h3>Total</h3></td>
+                                            <td align="left"><h3>S/.<?php echo number_format($total, 2) ?></h3></td>
+                                        </tr>
+                                </tbody>
+                            </table>
+                            
+                            <br>
+                            <!-- <div style="text-align: center;"> -->
+                            <div style="display: flex; justify-content: center; align-items: center;">
+                                <!-- <a href="#" class="btn btn-primary" style="width:200px;height:60px;display: flex; justify-content: center; align-items: center;">
+                                    <span class="fa fa-plus"></span>
+                                    Comprar
+                                </a> -->
+                                <form action="<?php echo base_url() ?>index.php/Pago" method="POST">
+                                    <input type="hidden" value="<?php echo number_format($total, 2) ?>" name="total">
+                                    <!-- <a href="<?php // echo base_url(); ?>index.php/Carrito/store" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Comprar</a> -->
+                                    <button type="submit" class="btn btn-success btn-flat">Elegir metodo de pago</button>
+                                </form>
+                            </div>
 
-
-                            </tbody>
-                        </table>
-                        
-                        <br>
-                        <!-- <div style="text-align: center;"> -->
-                        <div style="display: flex; justify-content: center; align-items: center;">
-                            <!-- <a href="#" class="btn btn-primary" style="width:200px;height:60px;display: flex; justify-content: center; align-items: center;">
-                                <span class="fa fa-plus"></span>
-                                Comprar
-                            </a> -->
-                            <form action="<?php echo base_url() ?>index.php/Pago" method="POST">
-                                <input type="hidden" value="<?php echo number_format($total,2) ?>" name="total">
-                                <!-- <a href="<?php // echo base_url(); ?>index.php/Carrito/store" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Comprar</a> -->
-                                <button type="submit" class="btn btn-success btn-flat">Elegir metodo de pago</button>
-                            </form>
-                        </div>
-
-                    <?php else: ?>
-                        <div class="alert alert-success">
-                            No hay productos en el carrito
-                        </div>
-                    <?php endif; ?>
+                        <?php else: ?>
+                            <div class="alert alert-success">
+                                No hay productos en el carrito
+                            </div>
+                        <?php endif; ?>
 
 
 
@@ -211,26 +146,3 @@
     <!-- /.content -->
 </div>
 <!-- /.content-wrapper -->
-
-
-
-<div class="modal fade" id="modal-default">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title">Informacion del Producto</h4>
-      </div>
-      <div class="modal-body">
-        
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-danger pull-right" data-dismiss="modal">Cerrar</button>
-      </div>
-    </div>
-    <!-- /.modal-content -->
-  </div>
-  <!-- /.modal-dialog -->
-</div>
-<!-- /.modal -->

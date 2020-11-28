@@ -1,10 +1,9 @@
         <footer class="main-footer">
             <div class="container">
                 <div class="pull-right hidden-xs">
-                    <b>Version</b> 2.4.0
+                    <b>Version</b> 1.0.0
                 </div>
-                <strong>Copyright &copy; 2014-2016 <a href="https://adminlte.io">Almsaeed Studio</a>.</strong> All rights
-                reserved.
+                <strong>Copyright &copy; 2020 <a href="#">Bodeguita de Oro</a></strong>
             </div>
         </footer>
     </div>
@@ -43,6 +42,69 @@
 $(document).ready(function () {
     var base_url= "<?php echo base_url();?>";
 
+    $(document).on("keyup", ".quantities", function(){
+        alert("disminuyendo");
+    });
+    $(".btn-danger-minus").on("click", function(e){
+        // Para evitar que se haga la accion del href
+        e.preventDefault();
+        // Este si funciona bien siempre
+        var datacarrito = $(this).val();
+        var cantidades = datacarrito.split("*");
+        var idproducto = cantidades[0];
+        var cantidadencarrito = cantidades[1];
+        var stock = cantidades[2];
+        // Por alguna razon no funciona bien, muestra de valor undefined de rato en rato
+        var eee = e.target.dataset.id;
+        // alert("aumentando" + " " + eee + " " + iddd);
+        // /////
+        // alert("aumentando" + " " + cantidadencarrito + " " + stock);
+        if(cantidadencarrito != 1){
+            //alert("iasdf");
+
+            var ruta = base_url + "index.php/Carrito/disminuir/" + idproducto;
+            $.ajax({
+                url: ruta,
+                type:"POST",
+                success:function(resp){
+                    //alert(resp);
+                    //http://localhost/MyShop/categoria
+                    window.location.href = base_url + resp;
+                }
+            });
+        }
+        // /////
+    });
+    $(".btn-info-plus").on("click", function(e){
+        // Para evitar que se haga la accion del href
+        e.preventDefault();
+        // Este si funciona bien siempre
+        var datacarrito = $(this).val();
+        var cantidades = datacarrito.split("*");
+        var idproducto = cantidades[0];
+        var cantidadencarrito = cantidades[1];
+        var stock = cantidades[2];
+        // Por alguna razon no funciona bien, muestra de valor undefined de rato en rato
+        var eee = e.target.dataset.id;
+        // alert("aumentando" + " " + eee + " " + iddd);
+        // /////
+        // alert("aumentando" + " " + cantidadencarrito + " " + stock);
+        if(cantidadencarrito != stock){
+            //alert("iasdf");
+
+            var ruta = base_url + "index.php/Carrito/aumentar/" + idproducto;
+            $.ajax({
+                url: ruta,
+                type:"POST",
+                success:function(resp){
+                    //alert(resp);
+                    //http://localhost/MyShop/categoria
+                    window.location.href = base_url + resp;
+                }
+            });
+        }
+        // /////
+    });
     $(".btn-remove-carrito-producto").on("click", function(e){
         //Para evitar que se haga la accion del href
         e.preventDefault();

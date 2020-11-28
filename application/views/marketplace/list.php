@@ -19,10 +19,10 @@
                     <?php endforeach; ?>
                 </select>
               </div> -->
-              <div class="box-tools pull-right">
+              <!-- <div class="box-tools pull-right">
                 <a href="#" class="btn btn-box-tool" data-toggle="tooltip" title="Previous"><i class="fa fa-chevron-left"></i></a>
                 <a href="#" class="btn btn-box-tool" data-toggle="tooltip" title="Next"><i class="fa fa-chevron-right"></i></a>
-              </div>
+              </div> -->
             </div>
             <!-- /.box-header -->
 
@@ -75,9 +75,10 @@
                         <h5 class="card-title">S/.<?php echo $producto->precio; ?></h5>
                         <p class="card-text"><?php echo $producto->categoria; ?></p>
                         <!-- <button class="btn btn-primary" name="btnAccion" value="Agregar" type="submit">Agregar al carrito</button> -->
-                        <a href="<?php echo base_url(); ?>index.php/Marketplace/agregarproducto/<?php echo $producto->idtb_producto; ?>" class="btn btn-primary btn-flat">
+                        <a href="<?php echo base_url(); ?>index.php/Marketplace/agregarproducto/<?php echo $producto->idtb_producto; ?>" class="btn btn-warning btn-flat" style="border-radius: 6px;">
                           <!-- <span class="fa fa-plus"></span> -->
-                          Agregar al carrito
+                          <i class="fa fa-cart-plus"> </i>
+                          <b> Agregar al carrito</b>
                         </a>
                         <p class="card-text"></p>
                       </div>
