@@ -41,11 +41,14 @@ class Pedido_model extends CI_Model {
     }
 
     public function getPedidosByDate($fechainicio, $fechafin){
-        $this->db->select("ped.*, per.nombre");
+        $this->db->select("ped.*, e.nombre as estado, per.nombre, per.apellido, tp.nombre as tipopago");
         $this->db->from("tb_pedido ped");
-        $this->db->join("tb_persona per", "ped.idtb_persona = per.idtb_persona");
-        $this->db->where("ped.fecha >= ", $fechainicio);
-        $this->db->where("ped.fecha <= ", $fechafin);
+        $this->db->join("tb_estado e", "ped.idtb_estado = e.idtb_estado");
+        $this->db->join("tb_persona per", "per.idtb_persona = ped.idtb_persona");
+        $this->db->join("tb_tipo_pago tp", "tp.idtb_tipo_pago = ped.idtb_tipo_pago");
+        $this->db->where("DATE(ped.fecha) >= ", $fechainicio);
+        $this->db->where("DATE(ped.fecha) <= ", $fechafin);
+        $this->db->order_by("ped.idtb_pedido desc");
         $resultados = $this->db->get();
         if($resultados->num_rows() > 0){
             return $resultados->result();

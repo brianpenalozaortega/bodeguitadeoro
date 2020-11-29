@@ -415,16 +415,16 @@ $(document).ready(function () {
             {
                 // Los botones que se va a estrar mostrando (Excel)
                 extend: 'excelHtml5',
-                title: 'Listado de Pedidos',
+                title: 'Listado de pedidos',
                 exportOptions:{
-                    columns: [0, 1, 2, 3, 4, 5]
+                    columns: [0, 1, 2, 3, 4, 5, 6]
                 }
             },
             {
                 extend: 'pdfHtml5',
-                title: 'Listado de Pedidos',
+                title: 'Listado de pedidos',
                 exportOptions:{
-                    columns: [0, 1, 2, 3, 4, 5]
+                    columns: [0, 1, 2, 3, 4, 5, 6]
                 }
             }
         ],

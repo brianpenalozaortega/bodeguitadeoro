@@ -36,7 +36,7 @@
                             <li><a href="<?php echo base_url(); ?>index.php/Pedido"><i class="fa fa-circle-o"></i> Pedidos</a></li>
                         </ul>
                     </li>
-                    <!-- <li class="treeview">
+                    <li class="treeview">
                         <a href="#">
                             <i class="fa fa-print"></i> <span>Reportes</span>
                             <span class="pull-right-container">
@@ -44,9 +44,9 @@
                             </span>
                         </a>
                         <ul class="treeview-menu">
-                            <li><a href="<?php echo base_url() ?>index.php/Reporte"><i class="fa fa-circle-o"></i> Pedidos</a></li>
+                            <li><a href="<?php echo base_url() ?>index.php/Reporte/pedidos"><i class="fa fa-circle-o"></i> Pedidos</a></li>
                         </ul>
-                    </li> -->
+                    </li>
                     <!-- <li class="treeview">
                         <a href="#">
                             <i class="fa fa-user-circle-o"></i> <span>Administrador</span>
