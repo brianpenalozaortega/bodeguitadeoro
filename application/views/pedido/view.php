@@ -27,6 +27,10 @@
         <b>Numero de pedido: </b><?php echo $pedido->num_pedido; ?>
         <br>
         <b>Fecha y Hora: </b><?php echo $pedido->fecha; ?>
+        <br>
+        <b>Estado: </b><?php echo $pedido->estado; ?>
+        <br>
+        <b>Metodo de pago: </b><?php echo $pedido->tipopago; ?>
 	</div>	
 </div>
 <br>
@@ -54,26 +58,14 @@
                         <td><?php echo $detalle->categoria; ?></td>
 						<td align="center"><img src='<?php echo base_url(); ?>assets/template/imagenes/<?php echo $detalle->imagen; ?>' style='height:100px;width:100px;'></td>
                         <td><?php echo number_format($detalle->precio, 2); ?></td>
-                        <td><?php echo 1; ?></td>
-                        <td><?php echo number_format($detalle->precio, 2); ?></td>
+                        <td><?php echo $detalle->cantidad; ?></td>
+                        <td><?php echo number_format($detalle->precio * $detalle->cantidad, 2); ?></td>
                     </tr>
                     <?php $contador = 1 + $contador; ?>
-					<?php $total = $total + number_format($detalle->precio, 2); ?>
+					<?php $total = $total + number_format($detalle->precio * $detalle->cantidad, 2); ?>
 				<?php endforeach;?>
 			</tbody>
 			<tfoot>
-				<!-- <tr>
-					<td colspan="4" class="text-right"><strong>Subtotal:</strong></td>
-					<td><?php echo 1; ?></td>
-				</tr>
-				<tr>
-					<td colspan="4" class="text-right"><strong>IGV:</strong></td>
-					<td><?php echo 1; ?></td>
-				</tr>
-				<tr>
-					<td colspan="4" class="text-right"><strong>Descuento:</strong></td>
-					<td><?php echo 1; ?></td>
-				</tr> -->
 				<tr>
 					<td colspan="6" class="text-right"><strong>Total:</strong></td>
 					<td><?php echo number_format($total, 2) ?></td>

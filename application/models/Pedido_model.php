@@ -4,10 +4,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Pedido_model extends CI_Model {
 
     public function getPedidos(){
-        $this->db->select("ped.*, e.nombre as estado, per.nombre, per.apellido");
+        $this->db->select("ped.*, e.nombre as estado, per.nombre, per.apellido, tp.nombre as tipopago");
         $this->db->from("tb_pedido ped");
         $this->db->join("tb_estado e", "ped.idtb_estado = e.idtb_estado");
         $this->db->join("tb_persona per", "per.idtb_persona = ped.idtb_persona");
+        $this->db->join("tb_tipo_pago tp", "tp.idtb_tipo_pago = ped.idtb_tipo_pago");
         $resultados = $this->db->get();
         if($resultados->num_rows() > 0){
             return $resultados->result();
@@ -18,13 +19,12 @@ class Pedido_model extends CI_Model {
     }
 
     public function getPedido($idpedido){
-        $this->db->select("ped.*, per.*, c.celular, c.direccion, c.referencia, e.nombre as estado");
-        // , per.nombre, c.direccion, c.telefono, c.documento, tc.nombre as tipocomprobante
+        $this->db->select("ped.*, per.*, c.celular, c.direccion, c.referencia, e.nombre as estado, tp.nombre as tipopago");
         $this->db->from("tb_pedido ped");
         $this->db->join("tb_estado e", "ped.idtb_estado = e.idtb_estado");
         $this->db->join("tb_persona per", "ped.idtb_persona = per.idtb_persona");
         $this->db->join("tb_cliente c", "per.idtb_persona = c.idtb_persona");
-        // $this->db->join("tb_tipo_comprobante tc", "v.idtb_tipo_comprobante = tc.idtb_tipo_comprobante");
+        $this->db->join("tb_tipo_pago tp", "tp.idtb_tipo_pago = ped.idtb_tipo_pago");
         $this->db->where("ped.idtb_pedido", $idpedido);
         $resultado = $this->db->get();
         return $resultado->row();
@@ -43,7 +43,6 @@ class Pedido_model extends CI_Model {
         $this->db->select("ped.*, per.nombre");
         $this->db->from("tb_pedido ped");
         $this->db->join("tb_persona per", "ped.idtb_persona = per.idtb_persona");
-        // $this->db->join("tb_tipo_comprobante tc", "v.idtb_tipo_comprobante = tc.idtb_tipo_comprobante");
         $this->db->where("ped.fecha >= ", $fechainicio);
         $this->db->where("ped.fecha <= ", $fechafin);
         $resultados = $this->db->get();
@@ -56,12 +55,12 @@ class Pedido_model extends CI_Model {
     }
 
     public function getPedidosByCliente(){
-        $this->db->select("p.*, e.nombre as estado");
-        $this->db->from("tb_pedido p");
-        // $this->db->join("tb_detalle_pedido pd", "pd.idtb_pedido = pd.idtb_pedido");
-        $this->db->join("tb_estado e", "p.idtb_estado = e.idtb_estado");
-        $this->db->where("p.idtb_persona = ", $this->session->userdata("id"));
-        $this->db->order_by("p.idtb_pedido desc");
+        $this->db->select("ped.*, e.nombre as estado, tp.nombre as tipopago");
+        $this->db->from("tb_pedido ped");
+        $this->db->join("tb_estado e", "ped.idtb_estado = e.idtb_estado");
+        $this->db->join("tb_tipo_pago tp", "tp.idtb_tipo_pago = ped.idtb_tipo_pago");
+        $this->db->where("ped.idtb_persona = ", $this->session->userdata("id"));
+        $this->db->order_by("ped.idtb_pedido desc");
         $resultados = $this->db->get();
         if($resultados->num_rows() > 0){
             return $resultados->result();

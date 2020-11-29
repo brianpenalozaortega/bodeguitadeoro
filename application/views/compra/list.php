@@ -31,6 +31,7 @@
                                     <th>Fecha</th>
                                     <th>Monto</th>
                                     <th>Estado</th>
+                                    <th style="text-align:center">Metodo de pago</th>
                                     <th>Ver detalle</th>
                                 </tr>
                             </thead>
@@ -52,6 +53,15 @@
                                                 success
                                                 warning
                                                 danger 
+                                                -->
+                                            </td>
+                                            <td style="text-align:center">
+                                                <span class="label bg-<?php echo $pedido->idtb_tipo_pago == 1 ? "green" : "purple"; ?>">
+                                                    <?php echo $pedido->tipopago; ?>
+                                                </span>
+                                                <!-- 
+                                                green
+                                                purple
                                                 -->
                                             </td>
                                             <td>
