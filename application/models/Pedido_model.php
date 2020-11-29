@@ -9,6 +9,7 @@ class Pedido_model extends CI_Model {
         $this->db->join("tb_estado e", "ped.idtb_estado = e.idtb_estado");
         $this->db->join("tb_persona per", "per.idtb_persona = ped.idtb_persona");
         $this->db->join("tb_tipo_pago tp", "tp.idtb_tipo_pago = ped.idtb_tipo_pago");
+        $this->db->order_by("ped.idtb_pedido desc");
         $resultados = $this->db->get();
         if($resultados->num_rows() > 0){
             return $resultados->result();

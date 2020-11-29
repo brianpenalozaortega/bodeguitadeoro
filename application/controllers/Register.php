@@ -41,7 +41,7 @@ class Register extends CI_Controller {
                 'apellido' => $apellido,
                 'correo' => $correo,
                 'clave' => sha1($clave),
-                'idtb_tipo_persona' => 1
+                'idtb_tipo_persona' => 2
             );
 
             $res = $this->Cliente_model->savepersona($data);

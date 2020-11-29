@@ -49,12 +49,9 @@
                                             <?php $dataproducto = $producto->idtb_producto."*".$producto->nombre."*".$producto->precio."*".$producto->stock."*".$producto->imagen."*".$producto->categoria."*".base_url(); ?>
                                             <td>
                                                 <div class="btn-group">
-                                                    <!-- version categoria -->
-                                                    <!-- <button type="button" class="btn btn-info btn-view-cliente" data-toggle="modal" data-target="#modal-default" value="<?php echo $cliente->idtb_cliente; ?>"> -->
-                                                    <!-- version cliente -->
-                                                    <button type="button" class="btn btn-info btn-view-producto" data-toggle="modal" data-target="#modal-default" value="<?php echo $dataproducto ?>">
+                                                    <!-- <button type="button" class="btn btn-info btn-view-producto" data-toggle="modal" data-target="#modal-default" value="<?php echo $dataproducto ?>">
                                                         <span class="fa fa-search"></span>
-                                                    </button>
+                                                    </button> -->
                                                     <a href="<?php echo base_url() ?>index.php/Producto/edit/<?php echo $producto->idtb_producto; ?>" class="btn btn-warning">
                                                         <span class="fa fa-pencil"></span>
                                                     </a>

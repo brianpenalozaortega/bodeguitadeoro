@@ -29,7 +29,7 @@
                                     <th>#</th>
                                     <th>Numero</th>
                                     <th>Fecha</th>
-                                    <th>Monto</th>
+                                    <th>Total</th>
                                     <th>Estado</th>
                                     <th style="text-align:center">Metodo de pago</th>
                                     <th>Ver detalle</th>

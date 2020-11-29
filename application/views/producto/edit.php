@@ -45,7 +45,7 @@
                                 <label for="precio">Precio:</label>
                                 <!-- Para recuperar la informacion que se ha enviado se agrega la propiedad "value" a la etiqueta "input y se imprime el metodo set_value()" -->
                                 <!-- El metodo "set_value()" recibe como parametro el nombre del campo que se esta validando -->
-                                <input type="text" class="form-control" id="precio" name="precio" value="<?php echo !empty(form_error("precio")) ? set_value("precio") : $producto->precio ?>">
+                                <input type="number" class="form-control" id="precio" name="precio" value="<?php echo !empty(form_error("precio")) ? set_value("precio") : $producto->precio ?>">
                                 <!-- Imprimir el metodo form_error() recibe 3 parametros -->
                                 <!-- 1) Nombre del campo del cual estamos haciendo la validacion -->
                                 <!-- 2) La etiqueta donde se va a imprimir dicho mensaje "<span>" (Se puede estilizar) -->
@@ -58,7 +58,7 @@
                                 <label for="stock">Stock:</label>
                                 <!-- Para recuperar la informacion que se ha enviado se agrega la propiedad "value" a la etiqueta "input y se imprime el metodo set_value()" -->
                                 <!-- El metodo "set_value()" recibe como parametro el nombre del campo que se esta validando -->
-                                <input type="text" class="form-control" id="stock" name="stock" value="<?php echo !empty(form_error("stock")) ? set_value("stock") : $producto->stock ?>">
+                                <input type="number" class="form-control" id="stock" name="stock" value="<?php echo !empty(form_error("stock")) ? set_value("stock") : $producto->stock ?>">
                                 <!-- Imprimir el metodo form_error() recibe 3 parametros -->
                                 <!-- 1) Nombre del campo del cual estamos haciendo la validacion -->
                                 <!-- 2) La etiqueta donde se va a imprimir dicho mensaje "<span>" (Se puede estilizar) -->

@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>AdminLTE 2 | Registration Page</title>
+  <title>Bodeguita de Oro</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <!-- Bootstrap 3.3.7 -->
@@ -74,13 +74,13 @@
         <span class="glyphicon glyphicon-log-in form-control-feedback"></span>
       </div>
       <div class="row">
-        <div class="col-xs-12">
+        <!-- <div class="col-xs-12">
           <div class="checkbox icheck">
             <label>
               <input type="checkbox"> Estoy de acuerdo con los <a href="#"> terminos y condiciones</a>
             </label>
           </div>
-        </div>
+        </div> -->
         <!-- /.col -->
         <div class="col-xs-12">
           <button type="submit" class="btn btn-primary btn-block btn-flat">Registrarse</button>

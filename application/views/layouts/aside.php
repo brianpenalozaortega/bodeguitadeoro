@@ -6,7 +6,7 @@
             <section class="sidebar">      
                 <!-- sidebar menu: : style can be found in sidebar.less -->
                 <ul class="sidebar-menu" data-widget="tree">
-                    <li class="header">MAIN NAVIGATION</li>
+                    <li class="header"></li>
                     <li>
                         <a href="<?php echo base_url() ?>index.php/Dashboard">
                             <i class="fa fa-home"></i> <span>Inicio</span>
@@ -36,7 +36,7 @@
                             <li><a href="<?php echo base_url(); ?>index.php/Pedido"><i class="fa fa-circle-o"></i> Pedidos</a></li>
                         </ul>
                     </li>
-                    <li class="treeview">
+                    <!-- <li class="treeview">
                         <a href="#">
                             <i class="fa fa-print"></i> <span>Reportes</span>
                             <span class="pull-right-container">
@@ -44,12 +44,9 @@
                             </span>
                         </a>
                         <ul class="treeview-menu">
-                            <!-- <li><a href="#"><i class="fa fa-circle-o"></i> Categorias</a></li>
-                            <li><a href="#"><i class="fa fa-circle-o"></i> Clientes</a></li>
-                            <li><a href="#"><i class="fa fa-circle-o"></i> Productos</a></li> -->
                             <li><a href="<?php echo base_url() ?>index.php/Reporte"><i class="fa fa-circle-o"></i> Pedidos</a></li>
                         </ul>
-                    </li>
+                    </li> -->
                     <!-- <li class="treeview">
                         <a href="#">
                             <i class="fa fa-user-circle-o"></i> <span>Administrador</span>

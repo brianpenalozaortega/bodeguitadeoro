@@ -54,6 +54,10 @@
                                 </select>
                             </div>
                             <div class="form-group">
+                                <label for="tipopago">Metodo de pago</label>
+                                <input type="text" class="form-control" id="tipopago" name="tipopago" value="<?php echo $pedido->tipopago ?>" disabled>
+                            </div>
+                            <div class="form-group">
                                 <button type="submit" class="btn btn-success btn-flat">Guardar</button>
                             </div>
                         </form>

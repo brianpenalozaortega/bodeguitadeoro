@@ -31,7 +31,7 @@
                                     <th>Nombre</th>
                                     <th>Direccion</th>
                                     <th>Referencia</th>
-                                    <!-- <th>opciones</th> -->
+                                    <th>Celular</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -43,13 +43,7 @@
                                             <td><?php echo $cliente->nombre." ".$cliente->apellido; ?></td>
                                             <td><?php echo $cliente->direccion; ?></td>
                                             <td><?php echo $cliente->referencia; ?></td>
-                                            <!-- <td>
-                                                <div class="btn-group">
-                                                    <a href="<?php echo base_url() ?>index.php/Cliente/edit/<?php echo $cliente->idtb_persona; ?>" class="btn btn-warning">
-                                                        <span class="fa fa-pencil"></span>
-                                                    </a>
-                                                </div>
-                                            </td> -->
+                                            <td><?php echo $cliente->celular; ?></td>
                                         </tr>
                                         <?php $contador = 1 + $contador; ?>
                                     <?php endforeach; ?>
