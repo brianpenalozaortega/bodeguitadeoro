@@ -139,7 +139,7 @@ class Producto extends CI_Controller {
         $id = $this->input->post("id");
         $nombre = $this->input->post("nombre");
         $precio = $this->input->post("precio");
-        $stock = $this->input->post("stock");
+        // $stock = $this->input->post("stock");
         //$imagen = $this->input->post("imagen");
         $categoria = $this->input->post("categoria");
 
@@ -159,7 +159,7 @@ class Producto extends CI_Controller {
         // 3) Regla de validacion "requerido|unico[NombreDeLaTabla.Atributo]"
         $this->form_validation->set_rules("nombre", "Nombre", "required".$unique);
         $this->form_validation->set_rules("precio", "Precio", "required");
-        $this->form_validation->set_rules("stock", "Stock", "required");
+        // $this->form_validation->set_rules("stock", "Stock", "required");
 
         // Para ejecutar esta regla de validacion se debe llamar al metodo "RUN" de la libreria "form_validation"
         // Devuelve valor booleano
@@ -175,7 +175,7 @@ class Producto extends CI_Controller {
                 $data = array(
                     'nombre' => $nombre,
                     'precio' => $precio,
-                    'stock' => $stock,
+                    // 'stock' => $stock,
                     // Nombre de la imagen con extension
                     'imagen' => $imagen,
                     'idtb_categoria' => $categoria
@@ -213,7 +213,7 @@ class Producto extends CI_Controller {
                     $data = array(
                         'nombre' => $nombre,
                         'precio' => $precio,
-                        'stock' => $stock,
+                        // 'stock' => $stock,
                         // Nombre de la imagen con extension
                         'imagen' => $dataimagen['upload_data']['file_name'],
                         'idtb_categoria' => $categoria

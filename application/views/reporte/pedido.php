@@ -43,7 +43,7 @@
                                     <th>Total</th>
                                     <th>Estado</th>
                                     <th style="text-align:center">Metodo de pago</th>
-                                    <th>opciones</th>
+                                    <th>Opciones</th>
                                 </tr>
                             </thead>
                             <tbody>

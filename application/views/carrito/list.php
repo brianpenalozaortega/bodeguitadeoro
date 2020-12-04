@@ -1,27 +1,20 @@
-
-<!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
-    <!-- Content Header (Page header) -->
     <section class="content-header">
         <h1>
             Carrito de compras
             <small>Listado</small>
         </h1>
     </section>
-    <!-- Main content -->
     <section class="content">
-        <!-- Default box -->
         <div class="box box-solid">
             <div class="box-body">
                 <div class="row">
                     <div class="col-md-12">
-
                         <?php // print_r($_SESSION['CARRITO']); ?>
                         <!-- <br><br> -->
                         <?php // print_r($_SESSION['CARRITO'][11]); ?>
                         <!-- <br><br> -->
                         <?php // print_r($_SESSION['CARRITO'][11]['categoria']); ?>
-
                         <?php if(!empty($_SESSION['CARRITO'])): ?>
                             <table id="tableProductoList" class="table table-bordered btn-hover">
                                 <thead>
@@ -31,11 +24,9 @@
                                         <th>Imagen</th>
                                         <th>Categoria</th>
                                         <th>Precio</th>
-                                        <!-- // SOLO ESTO EN CANTIDAD -->
                                         <th>Stock Max.</th>
                                         <th>Cantidad</th>
                                         <th>Subtotal</th>
-                                        <!-- // SOLO ESTO EN CANTIDAD -->
                                         <th>Opciones</th>
                                     </tr>
                                 </thead>
@@ -51,7 +42,6 @@
                                                 <td align="center"><img src='<?php echo base_url(); ?>assets/template/imagenes/<?php echo $producto['imagen']; ?>' style='height:150px;width:150px;'></td>
                                                 <td><?php echo $producto['categoria'] ?></td>
                                                 <td>S/.<?php echo number_format($producto['precio'],2) ?></td>
-                                                <!-- // SOLO ESTO EN CANTIDAD -->
                                                 <td>
                                                     <?php foreach($productos as $product): ?>
                                                         <?php if($product->idtb_producto == $producto['idtb_producto']): ?>
@@ -69,33 +59,11 @@
                                                     <button class="btn btn-info btn-info-plus btn-sm" data-id="<?php echo $producto['idtb_producto'] ?>" value="<?php echo $datacarrito ?>">
                                                         <span class="fa fa-plus"></span>
                                                     </button>
-                                                    <!-- <br>
-                                                    <hr>
-                                                    <br> -->
-                                                    <!-- <input class="quantities" type="number" name="quantity" value="<?php echo $producto['cantidad'] ?>" min="1" max="<?php echo $stockbyproducto ?>" required> -->
-                                                    <!-- <td><input type='text' name='cantidades[]' value='1' class='cantidades'></td> -->
                                                 </td>
-                                                <!-- <td>
-                                                    <span class="next-input-group-addon next-before">
-                                                        <button>
-                                                            <i class="next-icon next-icon-minus next-xs next-btn-icon next-icon-alone"></i>
-                                                        </button>
-                                                    </span>
-                                                    <span>
-                                                        <input value="1">
-                                                    </span>
-                                                    <span class="next-input-group-addon next-after">
-                                                        <button>
-                                                            <i class="next-icon next-icon-add next-xs next-btn-icon next-icon-alone"></i>
-                                                        </button>
-                                                    </span>
-                                                </td> -->
                                                 <?php $subtotal = $producto['precio'] * $producto['cantidad']; ?>
                                                 <td>S/.<?php echo number_format($subtotal, 2) ?></td>
-                                                <!-- // SOLO ESTO EN CANTIDAD -->
                                                 <td>
                                                     <div class="btn-group">
-                                                        <!-- // $producto['idtb_producto']; -->
                                                         <a href="<?php echo base_url() ?>index.php/Carrito/delete/<?php echo $producto['idtb_producto']; ?>" class="btn btn-danger btn-remove-carrito-producto">
                                                             <span class="fa fa-remove"></span>
                                                         </a>
@@ -131,10 +99,6 @@
                                 No hay productos en el carrito
                             </div>
                         <?php endif; ?>
-
-
-
-
 
                     </div>
                 </div>

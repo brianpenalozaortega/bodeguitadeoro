@@ -231,7 +231,7 @@ $(document).ready(function () {
     //     html += "<p><strong>Categoria: </strong>"+infoventa[6]+"</p>";
     //     $("#modal-default .modal-body").html(html);
     // });
-    $('#tablePedidoList').DataTable({
+    $('#tableBoletaList').DataTable({
         "language": {
             "lengthMenu": "Mostrar _MENU_ registros por pagina",
             "zeroRecords": "No se encontraron resultados en su busqueda",
@@ -298,7 +298,7 @@ $(document).ready(function () {
     $("#producto").autocomplete({
         source: function(request, response){
             $.ajax({
-                url: base_url + "Venta/getproductosautocomplete",
+                url: base_url + "index.php/Boleta/getproductosautocomplete",
                 type: "POST",
                 dataType: "json",
                 data:{
@@ -311,7 +311,7 @@ $(document).ready(function () {
         },
         minLength: 2,
         select: function(event, ui){
-            data = ui.item.idtb_producto + "*" + ui.item.codigo + "*" + ui.item.label + "*" + ui.item.precio + "*" + ui.item.stock;
+            data = ui.item.idtb_producto + "*" + ui.item.label + "*" + ui.item.categoria + "*" + ui.item.stock + "*" + ui.item.precio;
             $("#btn-agregar").val(data);
         }
     });
@@ -319,18 +319,19 @@ $(document).ready(function () {
         data = $(this).val();
         if(data != ''){
             infoproducto = data.split("*");
+            nuevostock = 1 + parseInt(infoproducto[3]);
             html = "<tr>";
             html += "<td><input type='hidden' name='idproductos[]' value='" + infoproducto[0] + "'>" + infoproducto[1] + "</td>";
             html += "<td>" + infoproducto[2] + "</td>";
-            html += "<td><input type='hidden' name='precios[]' value='" + infoproducto[3] + "'>" + infoproducto[3] + "</td>";
-            html += "<td>" + infoproducto[4] + "</td>";
+            html += "<td>S/." + infoproducto[4] + "</td>";
+            html += "<td>" + infoproducto[3] + "</td>";
             // AQUI AQUI AQUI ESTOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO
-            html += "<td><input type='text' name='cantidades[]' value='1' class='cantidades'></td>";
-            html += "<td><input type='hidden' name='importes[]' value='" + infoproducto[3] +"'><p>" + infoproducto[3] + "</p></td>";
-            html += "<td><button type='button' class='btn btn-danger btn-remove-venta-producto'><span class='fa fa-remove'></span></button></td>";
+            html += "<td><input type='number' name='cantidades[]' value='1' class='cantidades'></td>";
+            html += "<td>" + nuevostock + "</td>";
+            html += "<td><button type='button' class='btn btn-danger btn-remove-boleta-producto'><span class='fa fa-remove'></span></button></td>";
             html += "</tr>";
             // Selecciono la tabla de ventas para agregar todo el html
-            $("#tableVentaAdd tbody").append(html);
+            $("#tableBoletaAdd tbody").append(html);
 
             Sumar();
             // Se limpia el valor del boton agregar
@@ -341,30 +342,87 @@ $(document).ready(function () {
             alert("Seleccione un producto");
         }
     });
-    $(document).on("click", ".btn-remove-venta-producto", function(){
+    $(document).on("click", ".btn-remove-boleta-producto", function(){
         // closest es solo para buscar al elemento con etiqueta tr
         $(this).closest("tr").remove();
 
         Sumar();
     });
     // AQUI AQUI AQUI ESTOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO
-    $(document).on("keyup", "#tableVentaAdd input.cantidades", function(){
+    $(document).on("keyup", "#tableBoletaAdd input.cantidades", function(){
         cantidad = $(this).val();
+        stockactual = $(this).closest("tr").find("td:eq(3)").text();
+        // alert(stockactual + "-" + cantidad);
         // closest es solo para buscar al elemento con etiqueta tr
-        precio = $(this).closest("tr").find("td:eq(2)").text()
-        importe = cantidad * precio;
+        // precio = $(this).closest("tr").find("td:eq(2)").text()
+        nuevostock = parseInt(cantidad) + parseInt(stockactual);
         // Se imprime importe en el input oculto y en el parrafo
         // Se selecciona tr para ubicarse en la fila correspondiente a ese elemento
         // Se busca al elemento con indice 5(importe) contando desde 0
         // Luego como la columna tiene 2 elemento, se selecciona el elemento p que es hijo de la columna
-        $(this).closest("tr").find("td:eq(5)").children("p").text(importe);
+        $(this).closest("tr").find("td:eq(5)").text(nuevostock);
         // Se imprime importe en el input oculto y en el parrafo
         // Se selecciona tr para ubicarse en la fila correspondiente a ese elemento
         // Se busca al elemento con indice 5(importe) contando desde 0
         // Luego como la columna tiene 2 elemento, se selecciona el elemento input que es hijo de la columna
-        $(this).closest("tr").find("td:eq(5)").children("input").val(importe);
+        // $(this).closest("tr").find("td:eq(5)").children("input").val(importe);
 
-        Sumar();
+        // Sumar();
+    });
+    $(document).on("click", ".btn-view-boleta", function(){
+        //  Se captura el id de la venta por medio del value del boton
+        valor_id = $(this).val();
+        // Por medio de Ajax se envia el id al metodo view
+        $.ajax({
+            url: base_url + "Boleta/view",
+            type: "POST",
+            dataType: "html",
+            data:{
+                id: valor_id
+            },
+            success: function(data){
+                $("#modal-default .modal-body").html(data);
+            }
+        });
+    });
+    $(document).on("click", ".btn-print-boleta", function(){
+        $("#modal-default .modal-body").print({
+            // No necesariamente va esto
+            title: "Comprobante"
+
+            // Todos los elementos parametrizables
+            // globalStyles: true,
+        	// mediaPrint: false,
+        	// stylesheet: null,
+        	// noPrintSelector: ".no-print",
+        	// iframe: true,
+        	// append: null,
+        	// prepend: null,
+        	// manuallyCopyFormValues: true,
+        	// deferred: $.Deferred(),
+        	// timeout: 750,
+        	// title: null,
+        	// doctype: '<!doctype html>'
+        });
+    });
+
+
+    $('#tablePedidoList').DataTable({
+        "language": {
+            "lengthMenu": "Mostrar _MENU_ registros por pagina",
+            "zeroRecords": "No se encontraron resultados en su busqueda",
+            "searchPlaceholder": "Buscar registros",
+            "info": "Mostrando registros de _START_ al _END_ de un total de  _TOTAL_ registros",
+            "infoEmpty": "No existen registros",
+            "infoFiltered": "(filtrado de un total de _MAX_ registros)",
+            "search": "Buscar:",
+            "paginate": {
+                "first": "Primero",
+                "last": "Último",
+                "next": "Siguiente",
+                "previous": "Anterior"
+            },
+        }
     });
     // Esta comentado parte del codigo porque esta hecho de la otra manera
     $(document).on("click", ".btn-view-pedido", function(){
@@ -385,7 +443,7 @@ $(document).ready(function () {
             }
         });
     });
-    $(document).on("click", ".btn-print", function(){
+    $(document).on("click", ".btn-print-pedido", function(){
         $("#modal-default .modal-body").print({
             // No necesariamente va esto
             title: "Comprobante"
@@ -586,7 +644,7 @@ function GenerarNumeroParaVenta(numero){
 function Sumar(){
     subtotal = 0;
     // Metodo que permite recorrer los tr
-    $("#tableVentaAdd tbody tr").each(function(){
+    $("#tableBoletaAdd tbody tr").each(function(){
         // Aqui es donde se suma el contenido de la columna import
         // Para capturar el valor de la columna import se programa $(this).find("");
         // td con indice 5(importe)

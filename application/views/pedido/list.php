@@ -1,26 +1,13 @@
-<!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
-    <!-- Content Header (Page header) -->
     <section class="content-header">
         <h1>
             Pedidos
             <small>Listado</small>
         </h1>
     </section>
-    <!-- Main content -->
     <section class="content">
-        <!-- Default box -->
         <div class="box box-solid">
             <div class="box-body">
-                <!-- <div class="row">
-                    <div class="col-md-12">
-                        <a href="<?php echo base_url(); ?>index.php/Categoria/add" class="btn btn-primary btn-flat">
-                            <span class="fa fa-plus"></span>
-                            Agregar categoria
-                        </a>
-                    </div>
-                </div> -->
-                <hr>
                 <div class="row">
                     <div class="col-md-12">
                         <table id="tablePedidoList" class="table table-bordered btn-hover">
@@ -33,7 +20,7 @@
                                     <th>Total</th>
                                     <th>Estado</th>
                                     <th style="text-align:center">Metodo de pago</th>
-                                    <th>opciones</th>
+                                    <th>Opciones</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -86,14 +73,9 @@
                     </div>
                 </div>
             </div>
-            <!-- /.box-body -->
         </div>
-        <!-- /.box -->
     </section>
-    <!-- /.content -->
 </div>
-<!-- /.content-wrapper -->
-
 
 
 <div class="modal fade" id="modal-default">
@@ -109,11 +91,8 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-danger pull-left" data-dismiss="modal">Cerrar</button>
-        <button type="button" class="btn btn-primary btn-print"><span class="fa fa-print"> Imprimir</span></button>
+        <button type="button" class="btn btn-primary btn-print-pedido"><span class="fa fa-print"> Imprimir</span></button>
       </div>
     </div>
-    <!-- /.modal-content -->
   </div>
-  <!-- /.modal-dialog -->
 </div>
-<!-- /.modal -->
