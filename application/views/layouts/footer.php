@@ -2,7 +2,7 @@
             <div class="pull-right hidden-xs">
                 <b>Version</b> 1.0.0
             </div>
-            <strong>Copyright &copy; 2020 <a href="https://www.facebook.com/La-Bodeguita-De-Oro-107278281233183">Bodeguita de Oro</a></strong>
+            <strong>Copyright &copy; 2020 <a href="https://www.facebook.com/La-Bodeguita-De-Oro-107278281233183" target="_blank">Bodeguita de Oro</a></strong>
         </footer>
     </div>
     <!-- ./wrapper -->
