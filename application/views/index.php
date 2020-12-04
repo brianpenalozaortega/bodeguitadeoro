@@ -23,6 +23,17 @@
     <!-- AdminLTE Skins. Choose a skin from the css/skins
     folder instead of downloading all of them to reduce the load. -->
     <link rel="stylesheet" href="<?php echo base_url();?>assets/template/dist/css/skins/_all-skins.min.css">
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-0LQ7E8K2BZ"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-0LQ7E8K2BZ');
+    </script>
+
 </head>
 
 <!-- ADD THE CLASS layout-top-nav TO REMOVE THE SIDEBAR. -->
@@ -227,7 +238,7 @@
                 <div class="pull-right hidden-xs">
                     <b>Version</b> 1.0.0
                 </div>
-                <strong>Copyright &copy; 2020 <a href="#">Bodeguita de Oro</a></strong>
+                <strong>Copyright &copy; 2020 <a href="https://www.facebook.com/La-Bodeguita-De-Oro-107278281233183">Bodeguita de Oro</a></strong>
             </div>
         </footer>
     </div>

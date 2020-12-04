@@ -17,6 +17,16 @@
   <!-- Theme style -->
   <link rel="stylesheet" href="<?php echo base_url();?>assets/template/dist/css/AdminLTE.min.css">
 
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-0LQ7E8K2BZ"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'G-0LQ7E8K2BZ');
+    </script>
+
 </head>
 <body class="hold-transition login-page">
     <div class="login-box">
