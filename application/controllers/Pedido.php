@@ -54,7 +54,7 @@ class Pedido extends CI_Controller {
         }
     }
 
-    // Hay 2 maneras, esta es la otra manera
+    // Hay 2 maneras, esta es la otra manera - AJAX
 	public function view($id){
         $data = array(
             'pedido' => $this->Pedido_model->getPedido($id),

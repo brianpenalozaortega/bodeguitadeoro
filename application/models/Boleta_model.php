@@ -26,4 +26,10 @@ class Boleta_model extends CI_Model {
         $resultados = $this->db->get();
         return $resultados->result_array();
     }
+
+    // Asi es, esta bien ... sin tabla
+    // Capturar ID de ultima venta creada
+    public function getLastID(){
+        return $this->db->insert_id();
+    }
 }

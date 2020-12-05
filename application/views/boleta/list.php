@@ -28,7 +28,6 @@
                                 <tr>
                                     <th>#</th>
                                     <th>Fecha y hora</th>
-                                    <th>Total</th>
                                     <th>Opciones</th>
                                 </tr>
                             </thead>
@@ -39,7 +38,6 @@
                                         <tr>
                                             <td><?php echo $contador; ?></td>
                                             <td><?php echo $boleta->fecha; ?></td>
-                                            <td><?php echo $boleta->monto; ?></td>
                                             <td>
                                                 <div class="btn-group">
                                                     <button type="button" class="btn btn-info btn-view-boleta" data-toggle="modal" data-target="#modal-default" value="<?php echo $boleta->idtb_boleta; ?>">
@@ -79,7 +77,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-danger pull-left" data-dismiss="modal">Cerrar</button>
-        <button type="button" class="btn btn-primary btn-print"><span class="fa fa-print"> Imprimir</span></button>
+        <button type="button" class="btn btn-primary btn-print-boleta"><span class="fa fa-print"> Imprimir</span></button>
       </div>
     </div>
     <!-- /.modal-content -->

@@ -19,24 +19,20 @@
                             <input type="hidden" value="<?php echo $pedido->idtb_pedido; ?>" name="idpedido">
                             <div class="form-group">
                                 <label for="num_pedido">Numero</label>
-                                <input type="text" class="form-control" id="num_pedido" name="num_pedido" value="<?php echo $pedido->num_pedido ?>" disabled>
+                                <input type="text" class="form-control" id="num_pedido" name="num_pedido" value="<?php echo $pedido->num_pedido ?>" readonly="readonly">
                             </div>
                             <div class="form-group">
                                 <label for="fecha">Fecha y hora</label>
-                                <input type="text" class="form-control" id="fecha" name="fecha" value="<?php echo $pedido->fecha ?>" disabled>
+                                <input type="text" class="form-control" id="fecha" name="fecha" value="<?php echo $pedido->fecha ?>" readonly="readonly">
                             </div>
                             <div class="form-group">
                                 <label for="persona">Cliente</label>
-                                <input type="text" class="form-control" id="persona" name="persona" value="<?php echo $pedido->nombre." ".$pedido->apellido ?>" disabled>
+                                <input type="text" class="form-control" id="persona" name="persona" value="<?php echo $pedido->nombre." ".$pedido->apellido ?>" readonly="readonly">
                             </div>
                             <div class="form-group">
                                 <label for="monto">Total</label>
-                                <input type="text" class="form-control" id="monto" name="monto" value="<?php echo $pedido->monto ?>" disabled>
+                                <input type="text" class="form-control" id="monto" name="monto" value="<?php echo $pedido->monto ?>" readonly="readonly">
                             </div>
-                            <!-- <div class="form-group">
-                                <label for="estado">Estado</label>
-                                <input type="text" class="form-control" id="estado" name="estado" value="<?php echo $pedido->estado ?>">
-                            </div> -->
                             <div class="form-group">
                                 <label for="estado">Estado</label>
                                 <select name="estado" id="estado" class="form-control">
@@ -55,7 +51,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="tipopago">Metodo de pago</label>
-                                <input type="text" class="form-control" id="tipopago" name="tipopago" value="<?php echo $pedido->tipopago ?>" disabled>
+                                <input type="text" class="form-control" id="tipopago" name="tipopago" value="<?php echo $pedido->tipopago ?>" readonly="readonly">
                             </div>
                             <div class="form-group">
                                 <button type="submit" class="btn btn-success btn-flat">Guardar</button>

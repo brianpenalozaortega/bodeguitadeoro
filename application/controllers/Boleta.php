@@ -13,6 +13,8 @@ class Boleta extends CI_Controller {
         }
 
         $this->load->model("Boleta_model");
+        $this->load->model("DetalleBoleta_model");
+        $this->load->model("Producto_model");
     }
 
 	public function index(){
@@ -36,40 +38,53 @@ class Boleta extends CI_Controller {
         $productos = $this->Boleta_model->getProductosAutocomplete($valor);
         echo json_encode($productos);
     }
-	public function store(){
-        $nombre = $this->input->post("nombre");
+    public function store(){
+        $fecha = $this->input->post("fecha");
 
-        // Para establecer una regla de validacion se tiene que ejecutar el metodo set_rules
-        // Este metodo recibe 3 parametros
-        // 1) Nombre del campo => NOMBRE DE LA VARIABLE
-        // 2) Alias del campo => NOMBRE DE LO QUE SE VA A MOSTRAR QUE ESTA MAL
-        // 3) Regla de validacion "requerido|unico[NombreDeLaTabla.Atributo]"
-        $this->form_validation->set_rules("nombre", "Nombre", "required|is_unique[tb_categoria.nombre]");
+        $data = array(
+            'fecha' => $fecha,
+        );
 
-        // Para ejecutar esta regla de validacion se debe llamar al metodo "RUN" de la libreria "form_validation"
-        // Devuelve valor booleano
-        if($this->form_validation->run()){
-            $data = array(
-                'nombre' => $nombre
-            );
-    
-            if($this->Categoria_model->saveCategoria($data)){
-                redirect(base_url()."index.php/Categoria");
-            }
-            else{
-                $this->session->set_flashdata("error", "No se pudo guardar la nueva categoria");
-                redirect(base_url()."index.php/Categoria/add");
-            }
+        $idproductos = $this->input->post("idproductos");
+        $cantidades = $this->input->post("cantidades");
+
+        if($this->Boleta_model->saveBoleta($data)){
+            $id = $this->Boleta_model->getLastID();
+            $this->store_detalle($id, $idproductos, $cantidades);
+
+            redirect(base_url()."index.php/Boleta");
         }
         else{
-            // Se va a mostrar el formulario de Agregar nuevamente
-            $this->add();
+            redirect(base_url()."index.php/Boleta/add");
         }
     }
+    protected function store_detalle($id, $idproductos, $cantidades){
+        for($i = 0; $i < count($idproductos); $i++){
+            $data = array(
+                'idtb_producto' => $idproductos[$i],
+                'idtb_boleta' => $id,
+                'cantidad' => $cantidades[$i],
+            );
 
+            $this->DetalleBoleta_model->saveDetalleBoleta($data);
+            $this->updateProducto($idproductos[$i], $cantidades[$i]);
+        }
+    }
+    protected function updateProducto($idproducto, $cantidad){
+        $productoActual = $this->Producto_model->getProducto($idproducto);
+
+        $data = array(
+            'stock' => $productoActual->stock + $cantidad
+        );
+
+        $this->Producto_model->updateProducto($idproducto, $data);
+    }
+
+    // Hay 2 maneras, esta es la otra manera - AJAX
 	public function view($id){
         $data = array(
-            'boleta' => $this->Boleta_model->getBoleta($id)
+            'boleta' => $this->Boleta_model->getBoleta($id),
+            'detalles' => $this->DetalleBoleta_model->getDetalleBoleta($id)
         );
 		$this->load->view('boleta/view', $data);
     }

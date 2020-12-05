@@ -13,7 +13,7 @@ class DetalleBoleta_model extends CI_Model {
         return $resultados->result();
     }
 
-    public function saveDetallePedido($data){
+    public function saveDetalleBoleta($data){
         return $this->db->insert("tb_detalle_boleta", $data);
     }
 }

@@ -372,14 +372,15 @@ $(document).ready(function () {
     $(document).on("click", ".btn-view-boleta", function(){
         //  Se captura el id de la venta por medio del value del boton
         valor_id = $(this).val();
+        // alert(valor_id);
         // Por medio de Ajax se envia el id al metodo view
         $.ajax({
-            url: base_url + "Boleta/view",
+            url: base_url + "index.php/Boleta/view/" + valor_id,
             type: "POST",
-            dataType: "html",
-            data:{
-                id: valor_id
-            },
+            // dataType: "html",
+            // data:{
+            //     id: valor_id
+            // },
             success: function(data){
                 $("#modal-default .modal-body").html(data);
             }

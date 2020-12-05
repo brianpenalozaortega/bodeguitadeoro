@@ -15,7 +15,7 @@
             <div class="box-body">
                 <div class="row">
                     <div class="col-md-12">
-                        <form action="<?php echo base_url();?>Boleta/store" method="POST" class="form-horizontal">
+                        <form action="<?php echo base_url();?>index.php/Boleta/store" method="POST" class="form-horizontal">
                             <div class="form-group">
                                 <div class="col-md-3">
                                     <label for="fecha">Fecha:</label>
@@ -47,22 +47,11 @@
                                 <tbody>
                                 
                                 </tbody>
-                            </table>
-
-                            <!-- <div class="form-group">
-                                <div class="col-md-3">
-                                    <div class="input-group">
-                                        <span class="input-group-addon">Total:</span>
-                                        <input type="text" class="form-control" name="total" readonly="readonly">
-                                    </div>
-                                </div>
-                            </div> -->
-                            
+                            </table>                            
                             <div class="form-group">
                                 <div class="col-md-12">
                                     <button type="submit" class="btn btn-success btn-flat">Guardar</button>
                                 </div>
-                                
                             </div>
                         </form>
                     </div>
