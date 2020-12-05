@@ -52,33 +52,40 @@
       </div>
     <?php endif; ?>
     <form action="<?php echo base_url();?>index.php/Register/savecliente" method="post">
-      <div class="form-group has-feedback">
-        <input type="text" class="form-control" placeholder="Nombres" name="nombre">
+      <div class="form-group <?php echo !empty(form_error("nombre")) ? 'has-error' : '' ?>">
+        <input type="text" class="form-control" placeholder="Nombres" name="nombre" value="<?php echo set_value("nombre") ?>">
         <span class="glyphicon glyphicon-user form-control-feedback"></span>
+        <?php echo form_error("nombre", "<span class='help-block'>", "</span>") ?>
       </div>
-      <div class="form-group has-feedback">
-        <input type="text" class="form-control" placeholder="Apellidos" name="apellido">
+      <div class="form-group <?php echo !empty(form_error("apellido")) ? 'has-error' : '' ?>">
+        <input type="text" class="form-control" placeholder="Apellidos" name="apellido" value="<?php echo set_value("apellido") ?>">
         <span class="glyphicon glyphicon-user form-control-feedback"></span>
+        <?php echo form_error("apellido", "<span class='help-block'>", "</span>") ?>
       </div>
-      <div class="form-group has-feedback">
-        <input type="email" class="form-control" placeholder="Correo" name="correo">
+      <div class="form-group <?php echo !empty(form_error("correo")) ? 'has-error' : '' ?>">
+        <input type="email" class="form-control" placeholder="Correo" name="correo" value="<?php echo set_value("correo") ?>">
         <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
+        <?php echo form_error("correo", "<span class='help-block'>", "</span>") ?>
       </div>
-      <div class="form-group has-feedback">
-        <input type="text" class="form-control" placeholder="Celular" name="celular">
+      <div class="form-group <?php echo !empty(form_error("celular")) ? 'has-error' : '' ?>">
+        <input type="text" class="form-control" placeholder="Celular" name="celular" value="<?php echo set_value("celular") ?>">
         <span class="glyphicon glyphicon-phone form-control-feedback"></span>
+        <?php echo form_error("celular", "<span class='help-block'>", "</span>") ?>
       </div>
-      <div class="form-group has-feedback">
-        <input type="text" class="form-control" placeholder="Direccion" name="direccion">
+      <div class="form-group <?php echo !empty(form_error("direccion")) ? 'has-error' : '' ?>">
+        <input type="text" class="form-control" placeholder="Direccion" name="direccion" value="<?php echo set_value("direccion") ?>">
         <span class="glyphicon glyphicon-map-marker form-control-feedback"></span>
+        <?php echo form_error("direccion", "<span class='help-block'>", "</span>") ?>
       </div>
-      <div class="form-group has-feedback">
-        <input type="text" class="form-control" placeholder="Referencia" name="referencia">
+      <div class="form-group <?php echo !empty(form_error("referencia")) ? 'has-error' : '' ?>">
+        <input type="text" class="form-control" placeholder="Referencia" name="referencia" value="<?php echo set_value("referencia") ?>">
         <span class="glyphicon glyphicon-map-marker form-control-feedback"></span>
+        <?php echo form_error("referencia", "<span class='help-block'>", "</span>") ?>
       </div>
-      <div class="form-group has-feedback">
-        <input type="password" class="form-control" placeholder="Clave" name="clave">
+      <div class="form-group <?php echo !empty(form_error("clave")) ? 'has-error' : '' ?>">
+        <input type="password" class="form-control" placeholder="Clave" name="clave" value="<?php echo set_value("clave") ?>">
         <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+        <?php echo form_error("clave", "<span class='help-block'>", "</span>") ?>
       </div>
       <div class="form-group has-feedback">
         <input type="password" class="form-control" placeholder="Repetir clave" name="repetirclave">

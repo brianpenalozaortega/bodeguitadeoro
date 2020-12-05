@@ -31,52 +31,69 @@ class Register extends CI_Controller {
         $clave = $this->input->post("clave");
         $repetirclave = $this->input->post("repetirclave");
 
-        if($clave != $repetirclave){
-            $this->session->set_flashdata("error", "Las claves no coinciden");
-            redirect(base_url().'index.php/Register');
-        }
-        else{
-            $data = array(
-                'nombre' => $nombre,
-                'apellido' => $apellido,
-                'correo' => $correo,
-                'clave' => sha1($clave),
-                'idtb_tipo_persona' => 2
-            );
+        $this->form_validation->set_rules("nombre", "Nombre", "required");
+        $this->form_validation->set_rules("apellido", "Apellido", "required");
+        $this->form_validation->set_rules("correo", "Correo", "required");
+        $this->form_validation->set_rules("celular", "Celular", "required");
+        $this->form_validation->set_rules("direccion", "Direccion", "required");
+        $this->form_validation->set_rules("referencia", "Referencia", "required");
+        $this->form_validation->set_rules("clave", "Clave", "required");
 
-            $res = $this->Cliente_model->savepersona($data);
 
-            if(!$res){
-                $this->session->set_flashdata("error", "No se pudo registrar correctamnte. Por favor intentar nuevamente.");
+        // Para ejecutar esta regla de validacion se debe llamar al metodo "RUN" de la libreria "form_validation"
+        // Devuelve valor booleano
+        if($this->form_validation->run()){
+            if($clave != $repetirclave){
+                $this->session->set_flashdata("error", "Las claves no coinciden");
                 redirect(base_url().'index.php/Register');
             }
             else{
-                $id = $this->Cliente_model->getLastID();
-
-                $datacliente = array(
-                    'celular' => $celular,
-                    'direccion' => $direccion,
-                    'referencia' => $referencia,
-                    'idtb_persona' => $id
+                $data = array(
+                    'nombre' => $nombre,
+                    'apellido' => $apellido,
+                    'correo' => $correo,
+                    'clave' => sha1($clave),
+                    'idtb_tipo_persona' => 2
                 );
 
-                $rescliente = $this->Cliente_model->savecliente($datacliente);
+                $res = $this->Cliente_model->savepersona($data);
 
-                if(!$rescliente){
-                    $this->session->set_flashdata("error", "No se pudo registrar correctamnte. Por favor intentar nuevamente.");
+                if(!$res){
+                    $this->session->set_flashdata("error", "No se pudo registrar correctamente. Por favor intentar nuevamente.");
                     redirect(base_url().'index.php/Register');
                 }
                 else{
-                    $datasession = array(
-                        'id' => $id,
-                        'nombre' => $nombre,
-                        'rol' => "cliente",
-                        'login' => TRUE
+                    $id = $this->Cliente_model->getLastID();
+
+                    $datacliente = array(
+                        'celular' => $celular,
+                        'direccion' => $direccion,
+                        'referencia' => $referencia,
+                        'idtb_persona' => $id
                     );
-                    $this->session->set_userdata($datasession);
-                    redirect(base_url()."index.php/Marketplace");
+
+                    $rescliente = $this->Cliente_model->savecliente($datacliente);
+
+                    if(!$rescliente){
+                        $this->session->set_flashdata("error", "No se pudo registrar correctamente. Por favor intentar nuevamente.");
+                        redirect(base_url().'index.php/Register');
+                    }
+                    else{
+                        $datasession = array(
+                            'id' => $id,
+                            'nombre' => $nombre,
+                            'rol' => "cliente",
+                            'login' => TRUE
+                        );
+                        $this->session->set_userdata($datasession);
+                        redirect(base_url()."index.php/Marketplace");
+                    }
                 }
             }
+        }
+        else{
+            // Se va a mostrar el formulario de Agregar nuevamente
+            $this->index();
         }
     }
 
